@@ -1,0 +1,20 @@
+---
+title: "Data_cleaning"
+author: "Diwen Si"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data Cleaning
+import library
+```{r}
+library(haven)
+library(Statamarkdown)
+library(tidyverse)
+```
+
+

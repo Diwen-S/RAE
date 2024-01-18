@@ -20,26 +20,24 @@ library(tidyverse)
 
 
 ```{r}
-wave1 <- read_dta("a_indresp.dta")
 filename <- c()
 index <- c("a","b", "c", "d","e","f","g","h","i","j","k","l")
 for (i in 1:length(index)){
   filename <- c(filename,paste0(index[i],"_indresp.dta"))
-  assign(paste0("wave",i), read_dta(filename[i]))
+  assign(paste0("wave",i), as.data.frame(read_dta(filename[i])))
 }
-varList <- c("sclfsato", "dvage", "fimngrs_dv", "jbstat", "marstat_dv", "health","nchresp", "gor_dv", "hhsize", "pidp", "hidp", "sex", "oprlg", "scend")
+varList <- c("pidp", "sclfsato", "dvage", "fimngrs_dv", "jbstat", "marstat_dv", "health","nchresp", "gor_dv", "hhsize", "pidp", "hidp", "sex", "oprlg", "scend")
 ```
 
 ```{r}
 allwaves <- c()
 bgn <- c()
 for (i in 1:12){
-  allwaves <- list(allwaves, paste0("wave",i))
+  allwaves <- c(allwaves, paste0("wave",i))
   bgn <- c(bgn,paste0(index,"_"))
-  names(allwaves[[i]]) <- gsub(bgn[i], "", names(allwaves[[i]]))
 }
 for (i in 1:12){
-  allwaves[i] <- allwaves[i] %>% select.list(all_of(var_names))
+  allwaves[i] <- allwaves[i] %>% select(all_of(var_names))
 }
 ```
 ```{r}
@@ -70,10 +68,58 @@ for (i in 1:12){
   wave1 <- wave1 %>% mutate(wave = 1)
   wave2 <- wave2 %>% mutate(wave = 2)
   wave3 <- wave3 %>% mutate(wave = 3)
-for (i in 1:12){
+  wave4 <- wave1 %>% mutate(wave = 4)
+  wave5 <- wave2 %>% mutate(wave = 5)
+  wave6 <- wave3 %>% mutate(wave = 6)
+  wave7 <- wave1 %>% mutate(wave = 7)
+  wave8 <- wave2 %>% mutate(wave = 8)
+  wave9 <- wave3 %>% mutate(wave = 9)
+  wave10 <- wave1 %>% mutate(wave = 10)
+  wave11 <- wave2 %>% mutate(wave = 11)
+  wave12 <- wave3 %>% mutate(wave = 12)
+  for (i in 1:12){
    if(!is.null(allwaves[[i]])) {
   allwaves[[i]] <- allwaves[[i]] %>% mutate(wave = i)
    }
 }
+wave2 <- as.data.frame(wave2)
+is.data.frame(wave12)
+write_dta(wave1,paste0("wave1.dta"))
+for (i in 1:12){
+  write_dta(allwaves[[i]],paste0("wave",i,".dta"))
+}
+```
+```{r}
+df_names <- paste0("wave", 1:12)
+
+# Loop over the data frame names
+for(i in seq_along(df_names)) {
+  # Check if the data frame exists and is not NULL
+  if(exists(df_names[i]) && !is.null(get(df_names[i]))) {
+    df <- get(df_names[i])
+    write_dta(df, paste0(df_names[i], ".dta"))
+  }
+}
+```
+
+```{r}
+# Create a vector of data frame names
+df_names <- paste0("wave", 1:12)
+
+# Create a vector of prefixes
+prefixes <- letters[1:12]
+
+# Loop over the data frames and prefixes
+for(i in seq_along(df_names)) {
+  # Check if the data frame exists and is not NULL
+  if(exists(df_names[i]) && !is.null(get(df_names[i]))) {
+    df <- get(df_names[i])
+    names(df) <- gsub(paste0(prefixes[i], "_"), "", names(df))
+    df <- df %>% select(all_of(varList))
+    df <- df %>% mutate(wave = i)
+    assign(df_names[i], df)
+  }
+}
+
 ```
 

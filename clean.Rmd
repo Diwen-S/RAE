@@ -16,6 +16,7 @@ library(haven)
 library(Statamarkdown)
 library(dplyr)
 library(tidyverse)
+library(data.table)
 ```
 
 
@@ -32,8 +33,10 @@ varList <- c("pidp", "sclfsato", "dvage", "fimngrs_dv", "jbstat", "marstat_dv", 
 ```{r}
 allwaves <- c()
 bgn <- c()
+allwaves <- paste0("wave",1:12)
+allwaves <- mget(allwaves)
 for (i in 1:12){
-  allwaves <- c(allwaves, paste0("wave",i))
+  allwaves <- list(allwaves, paste0("wave",i))
   bgn <- c(bgn,paste0(index,"_"))
 }
 for (i in 1:12){
@@ -121,5 +124,12 @@ for(i in seq_along(df_names)) {
   }
 }
 
+```
+
+```{r}
+wave1$hidp <- as.numeric(wave1$hidp)
+data1 <- rbindlist(mget(paste0("wave",1:12)))
+write_dta(data1,"wave1.dta")
+summary(data1$wave)
 ```
 

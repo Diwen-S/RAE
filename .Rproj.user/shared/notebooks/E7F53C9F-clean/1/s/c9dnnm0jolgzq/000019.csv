@@ -1,0 +1,9 @@
+"0","for (i in 1:12){
+   if(!is.null(allwaves[[i]])) {
+  allwaves[[i]] <- allwaves[[i]] %>% mutate(wave = i)
+   }
+}
+"
+"2","Error in UseMethod(""mutate"") : 
+  ""mutate""没有适用于""character""目标对象的方法
+"

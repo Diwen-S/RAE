@@ -1,0 +1,8 @@
+"0","all_waves <- c()"
+"0","filename <- c()"
+"0","index <- c(""a"",""b"", ""c"", ""d"",""e"",""f"",""g"",""h"",""i"",""j"",""k"",""l"")"
+"0","for (i in 1:length(index)){"
+"0","  filename <- c(filename,paste0(index[i],""_indresp.dta""))"
+"0","  assign(paste0(""wave"",i), read_dta(filename[i]))"
+"0","}"
+"0","varList <- c(""sclfsato"", ""dvage"", ""fimngrs_dv"", ""jbstat"", ""marstat_dv"", ""health"",""nchresp"", ""gor_dv"", ""hhsize"", ""pidp"", ""hidp"", ""sex"", ""oprlg"", ""scend"")"

@@ -1,0 +1,12 @@
+"0","allwaves <- c()"
+"0","bgn <- c()"
+"0","for (i in 1:12){"
+"0","  allwaves <- c(allwaves, paste0(""wave"",i))"
+"0","  bgn <- c(bgn,paste0(index,""_""))"
+"0","}"
+"0","for (i in 1:12){"
+"0","  allwaves[i] <- allwaves[i] %>% select(all_of(var_names))"
+"0","}"
+"2","Error in UseMethod(""select"") : 
+  ""select""没有适用于""character""目标对象的方法
+"

@@ -1,0 +1,1 @@
+{"frames":[{"func":"allwaves[[i]] %>% mutate(wave = i)","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0},{"func":"mutate(., wave = i)","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0}],"message":"Error in UseMethod(\"mutate\") : \n  \"mutate\"没有适用于\"character\"目标对象的方法\n"}

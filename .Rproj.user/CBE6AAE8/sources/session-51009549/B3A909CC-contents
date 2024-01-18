@@ -1,0 +1,105 @@
+---
+title: "Data_cleaning"
+author: "Diwen Si"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data Cleaning
+import library
+```{r}
+library(haven)
+library(Statamarkdown)
+library(dplyr)
+library(tidyverse)
+```
+
+
+```{r}
+filename <- c()
+index <- c("a","b", "c", "d","e","f","g","h","i","j","k","l")
+for (i in 1:length(index)){
+  filename <- c(filename,paste0(index[i],"_indresp.dta"))
+  assign(paste0("wave",i), as.data.frame(read_dta(filename[i])))
+}
+varList <- c("pidp", "sclfsato", "dvage", "fimngrs_dv", "jbstat", "marstat_dv", "health","nchresp", "gor_dv", "hhsize", "pidp", "hidp", "sex", "oprlg", "scend")
+```
+
+```{r}
+allwaves <- c()
+bgn <- c()
+for (i in 1:12){
+  allwaves <- c(allwaves, paste0("wave",i))
+  bgn <- c(bgn,paste0(index,"_"))
+}
+for (i in 1:12){
+  allwaves[i] <- allwaves[i] %>% select(all_of(var_names))
+}
+```
+```{r}
+  names(wave1)<- gsub("a_","",names(wave1))
+  names(wave2)<- gsub("b_","",names(wave2))
+  names(wave3)<- gsub("c_","",names(wave3))
+  names(wave4)<- gsub("d_","",names(wave4))
+  names(wave5)<- gsub("e_","",names(wave5))
+  names(wave6)<- gsub("f_","",names(wave6))
+  names(wave7)<- gsub("g_","",names(wave7))
+  names(wave8)<- gsub("h_","",names(wave8))
+  names(wave9)<- gsub("i_","",names(wave9))
+  names(wave10)<- gsub("j_","",names(wave10))
+  names(wave11)<- gsub("k_","",names(wave11))
+  names(wave12)<- gsub("l_","",names(wave12))
+  wave1 <- wave1 %>% select(all_of(varList))
+  wave2 <- wave2 %>% select(all_of(varList))
+  wave3 <- wave3 %>% select(all_of(varList))
+  wave4 <- wave4 %>% select(all_of(varList))
+  wave5 <- wave5 %>% select(all_of(varList))
+  wave6 <- wave6 %>% select(all_of(varList))
+  wave7 <- wave7 %>% select(all_of(varList))
+  wave8 <- wave8 %>% select(all_of(varList))
+  wave9 <- wave9 %>% select(all_of(varList))
+  wave10 <- wave10 %>% select(all_of(varList))
+  wave11 <- wave11 %>% select(all_of(varList))
+  wave12 <- wave12 %>% select(all_of(varList))
+  wave1 <- wave1 %>% mutate(wave = 1)
+  wave2 <- wave2 %>% mutate(wave = 2)
+  wave3 <- wave3 %>% mutate(wave = 3)
+  wave4 <- wave1 %>% mutate(wave = 4)
+  wave5 <- wave2 %>% mutate(wave = 5)
+  wave6 <- wave3 %>% mutate(wave = 6)
+  wave7 <- wave1 %>% mutate(wave = 7)
+  wave8 <- wave2 %>% mutate(wave = 8)
+  wave9 <- wave3 %>% mutate(wave = 9)
+  wave10 <- wave1 %>% mutate(wave = 10)
+  wave11 <- wave2 %>% mutate(wave = 11)
+  wave12 <- wave3 %>% mutate(wave = 12)
+  for (i in 1:12){
+   if(!is.null(allwaves[[i]])) {
+  allwaves[[i]] <- allwaves[[i]] %>% mutate(wave = i)
+   }
+}
+wave2 <- as.data.frame(wave2)
+is.data.frame(wave12)
+write_dta(wave1,paste0("wave1.dta"))
+for (i in 1:12){
+  write_dta(allwaves[[i]],paste0("wave",i,".dta"))
+}
+```
+```{r}
+df_names <- paste0("wave", 1:12)
+
+# Loop over the data frame names
+for(i in seq_along(df_names)) {
+  # Check if the data frame exists and is not NULL
+  if(exists(df_names[i]) && !is.null(get(df_names[i]))) {
+    df <- get(df_names[i])
+    write_dta(df, paste0(df_names[i], ".dta"))
+  }
+}
+```
+
+

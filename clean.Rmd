@@ -14,7 +14,66 @@ import library
 ```{r}
 library(haven)
 library(Statamarkdown)
+library(dplyr)
 library(tidyverse)
 ```
 
+
+```{r}
+wave1 <- read_dta("a_indresp.dta")
+filename <- c()
+index <- c("a","b", "c", "d","e","f","g","h","i","j","k","l")
+for (i in 1:length(index)){
+  filename <- c(filename,paste0(index[i],"_indresp.dta"))
+  assign(paste0("wave",i), read_dta(filename[i]))
+}
+varList <- c("sclfsato", "dvage", "fimngrs_dv", "jbstat", "marstat_dv", "health","nchresp", "gor_dv", "hhsize", "pidp", "hidp", "sex", "oprlg", "scend")
+```
+
+```{r}
+allwaves <- c()
+bgn <- c()
+for (i in 1:12){
+  allwaves <- list(allwaves, paste0("wave",i))
+  bgn <- c(bgn,paste0(index,"_"))
+  names(allwaves[[i]]) <- gsub(bgn[i], "", names(allwaves[[i]]))
+}
+for (i in 1:12){
+  allwaves[i] <- allwaves[i] %>% select.list(all_of(var_names))
+}
+```
+```{r}
+  names(wave1)<- gsub("a_","",names(wave1))
+  names(wave2)<- gsub("b_","",names(wave2))
+  names(wave3)<- gsub("c_","",names(wave3))
+  names(wave4)<- gsub("d_","",names(wave4))
+  names(wave5)<- gsub("e_","",names(wave5))
+  names(wave6)<- gsub("f_","",names(wave6))
+  names(wave7)<- gsub("g_","",names(wave7))
+  names(wave8)<- gsub("h_","",names(wave8))
+  names(wave9)<- gsub("i_","",names(wave9))
+  names(wave10)<- gsub("j_","",names(wave10))
+  names(wave11)<- gsub("k_","",names(wave11))
+  names(wave12)<- gsub("l_","",names(wave12))
+  wave1 <- wave1 %>% select(all_of(varList))
+  wave2 <- wave2 %>% select(all_of(varList))
+  wave3 <- wave3 %>% select(all_of(varList))
+  wave4 <- wave4 %>% select(all_of(varList))
+  wave5 <- wave5 %>% select(all_of(varList))
+  wave6 <- wave6 %>% select(all_of(varList))
+  wave7 <- wave7 %>% select(all_of(varList))
+  wave8 <- wave8 %>% select(all_of(varList))
+  wave9 <- wave9 %>% select(all_of(varList))
+  wave10 <- wave10 %>% select(all_of(varList))
+  wave11 <- wave11 %>% select(all_of(varList))
+  wave12 <- wave12 %>% select(all_of(varList))
+  wave1 <- wave1 %>% mutate(wave = 1)
+  wave2 <- wave2 %>% mutate(wave = 2)
+  wave3 <- wave3 %>% mutate(wave = 3)
+for (i in 1:12){
+   if(!is.null(allwaves[[i]])) {
+  allwaves[[i]] <- allwaves[[i]] %>% mutate(wave = i)
+   }
+}
+```
 

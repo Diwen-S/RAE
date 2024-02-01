@@ -194,6 +194,7 @@ data2$relrk <- ifelse(is.na(data2$dvage),NA,data2$relrk)
 data2$absrk <- ifelse(is.na(data2$dvage),NA,data2$absrk)
 data2$grpsize <- ifelse(is.na(data2$dvage),NA,data2$grpsize)
 save(data2,file = "use_reg.RData")
+load("use_reg.RData")
 write_dta(data2,"use_reg.dta")
 stargazer(as.data.frame(data2),type = "latex", title='Summary Statistics',out = "summarys1.txt")
 ```

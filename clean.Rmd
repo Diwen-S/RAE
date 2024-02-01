@@ -16,6 +16,9 @@ library(haven)
 library(Statamarkdown)
 library(dplyr)
 library(tidyverse)
+library(data.table)
+library(stargazer)
+library(MASS)
 ```
 
 
@@ -32,8 +35,10 @@ varList <- c("pidp", "sclfsato", "dvage", "fimngrs_dv", "jbstat", "marstat_dv", 
 ```{r}
 allwaves <- c()
 bgn <- c()
+allwaves <- paste0("wave",1:12)
+allwaves <- mget(allwaves)
 for (i in 1:12){
-  allwaves <- c(allwaves, paste0("wave",i))
+  allwaves <- list(allwaves, paste0("wave",i))
   bgn <- c(bgn,paste0(index,"_"))
 }
 for (i in 1:12){
@@ -122,4 +127,88 @@ for(i in seq_along(df_names)) {
 }
 
 ```
+
+```{r}
+wave1$hidp <- as.numeric(wave1$hidp)
+data1 <- rbindlist(mget(paste0("wave",1:12)))
+write_dta(data1,"waveall.dta")
+summary(data1$wave)
+```
+generate reference group
+```{r}
+data1 <- read_dta("wave1.dta")
+attach(data1)
+summary(dvage)
+dvage <- ifelse(dvage <0,NA,dvage)
+data1$scend <- ifelse(data1$scend <0,NA,data1$scend)
+data1 <- data1 %>%
+  group_by(pidp) %>%
+  mutate(scend = ifelse(is.na(scend), max(scend,na.rm = TRUE), scend)) %>%
+  ungroup()
+data1$scend <- ifelse(data1$scend <0,NA,data1$scend)
+write_dta(data1,"scend.dta")
+```
+```{r}
+summary(data1$scend)
+attach(data1)
+data1$edu2 <- cut(data1$scend, breaks = c(-Inf,18.5,Inf), labels = c("low","high"))
+data1$edu3 <- cut(data1$scend, breaks = c(-Inf,16.5,18.5,Inf),labels = c("low","mid","high"))
+data1$sclfsato <- ifelse(sclfsato<0,NA,sclfsato)
+data1$gor_dv <- ifelse(gor_dv < 0, NA,gor_dv)
+data1$region4 <- cut(data1$gor_dv, breaks = c(0,9.5,10.5,11.5,12.5),labels = c("England","Wales","Scotland","Northern Ireland"))
+data1$age <- dvage^2/50
+data1$sex <- as.factor(ifelse(sex<0,NA,sex))
+data1$fimngrs_dv <- ifelse(data1$fimngrs_dv==c(-9,-8,-2,-1),NA,data1$fimngrs_dv)
+summary(data1$edu3)
+summary(data1$sclfsato)
+reg01 <- lm(sclfsato ~ sex + dvage + age + edu3 + region4, data = data1)
+data1 <- na.omit(data1)
+data1$group_m1 <- paste(data1$sex, data1$edu3, data1$region4, data1$wave, sep = "_")
+data1$group_m1 <- as.factor(as.numeric(as.factor(data1$group_m1)))
+write_dta(data1,"groupm1.dta")
+```
+generate relative rank
+```{r}
+data1 <- read_dta("groupm1.dta")
+for (i in 1:length(data2$dvage)){
+  data1$agegrp <- ifelse((data1$dvage < data1$dvage[i]+6.5 & data1$dvage > data1$dvage[i]-3.5),1,0) 
+  data1$refg <- data1$agegrp*as.numeric(data1$group_m1)
+  data1$refg <- ifelse(data1$refg == data1$refg[i],1,NA)
+  data1$inc <- data1$refg*data1$fimngrs_dv
+  data1$absrk[i] <- sum(!is.na(data1$inc))-rank(data1$inc)[i]
+  data1$grpsize[i] <- sum(!is.na(data1$inc))
+}
+data1$relrk <- 1 - (data1$absrk/data1$grpsize)
+write_dta(data1,"rrankm1.dta")
+save(data1, file = "rrankm1.RData")
+```
+summary statistics
+```{r}
+data2 <- subset(data1,select = !(names(data1) %in% c("pidp","hidp","scend","edu3","gor_dv","refg","inc","agegrp","groupm1")))
+data2$dvage <- ifelse(data2$dvage <0,NA,data2$dvage)
+data2$jbstat <- ifelse(data2$jbstat<0,NA,data2$jbstat)
+data2$marstat_dv <- ifelse(data2$marstat_dv<0,NA,data2$marstat_dv)
+data2$health <- ifelse(data2$health<0,NA,data2$health)
+data2$oprlg <- ifelse(data2$oprlg<0,NA,data2$oprlg)
+data2$relrk <- ifelse(is.na(data2$dvage),NA,data2$relrk)
+data2$absrk <- ifelse(is.na(data2$dvage),NA,data2$absrk)
+data2$grpsize <- ifelse(is.na(data2$dvage),NA,data2$grpsize)
+save(data2,file = "use_reg.RData")
+write_dta(data2,"use_reg.dta")
+stargazer(as.data.frame(data2),type = "latex", title='Summary Statistics',out = "summarys1.txt")
+```
+Estimation
+
+
+```{r}
+poolop01 <- polr(as.formula(as.factor(sclfsato) ~ relrk + fimngrs_dv + dvage + age + as.factor(sex) + as.factor(region4) + as.factor(edu2) + hhsize + nchresp + as.factor(health) + as.factor(jbstat) + as.factor(marstat_dv)), data = data2, Hess=TRUE)
+poolop02 <- polr(as.formula(as.factor(sclfsato) ~ fimngrs_dv + dvage + age + as.factor(sex) + as.factor(region4) + as.factor(edu2) + hhsize + nchresp + as.factor(health) + as.factor(jbstat) + as.factor(marstat_dv)), data = data2, Hess=TRUE)
+
+stargazer(poolop01,poolop02,out="poolop.txt")
+```
+```{stata}
+oprobit sclfsato relrk fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbstat i.marstat_dv
+oprobit sclfsato fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbstat i.marstat_dv
+```
+
 

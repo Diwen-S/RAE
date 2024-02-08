@@ -161,7 +161,7 @@ data1$edu3 <- cut(data1$scend, breaks = c(-Inf,16.5,18.5,Inf),labels = c("low","
 data1$sclfsato <- ifelse(sclfsato<0,NA,sclfsato)
 data1$gor_dv <- ifelse(gor_dv < 0, NA,gor_dv)
 data1$region4 <- cut(data1$gor_dv, breaks = c(0,9.5,10.5,11.5,12.5),labels = c("England","Wales","Scotland","Northern Ireland"))
-data1$age <- dvage^2/50
+data1$age <- data1$dvage^2/50
 data1$sex <- as.factor(ifelse(sex<0,NA,sex))
 data1$fimngrs_dv <- ifelse(data1$fimngrs_dv<0,NA,data1$fimngrs_dv)
 
@@ -169,14 +169,15 @@ lower_bound <- quantile(data1$fimngrs_dv, 0.01,na.rm = T)
 upper_bound <- quantile(data1$fimngrs_dv, 0.99,na.rm = T)
 
 # Subset the data frame
-data2 <- data1[data1$fimngrs_dv > lower_bound & data1$fimngrs_dv < upper_bound, ]#remove this line for groupm1
+
 summary(data1$edu3)
 summary(data1$sclfsato)
 
 data1 <- na.omit(data1)
 data1$group_m1 <- paste(data1$sex, data1$edu3, data1$region4, data1$wave, sep = "_")
 data1$group_m1 <- as.factor(as.numeric(as.factor(data1$group_m1)))
-write_dta(data1,"groupm2.dta")
+data2 <- data1[data1$fimngrs_dv > lower_bound & data1$fimngrs_dv < upper_bound, ]#remove this line for groupm1
+write_dta(data2,"groupm2.dta")
 ```
 generate relative rank
 ```{r}
@@ -194,19 +195,24 @@ write_dta(data1,"rrankm1.dta")
 save(data1, file = "rrankm1.RData")
 ```
 ```{r}
-data1 <- read_dta("groupm2.dta")
+data2 <- read_dta("groupm2.dta")
 for (i in 1:length(data2$dvage)){
-  data1$agegrp <- ifelse((data1$dvage < data1$dvage[i]+6.5 & data1$dvage > data1$dvage[i]-3.5),1,0) 
-  data1$refg <- data1$agegrp*as.numeric(data1$group_m1)
-  data1$refg <- ifelse(data1$refg == data1$refg[i],1,NA)
-  data1$inc <- data1$refg*data1$fimngrs_dv
-  data1$absrk[i] <- sum(!is.na(data1$inc))-rank(data1$inc)[i]
-  data1$refinc[i]<-mean(data1$inc,na.rm=T)
-  data1$grpsize[i] <- sum(!is.na(data1$inc))
+  data2$agegrp <- ifelse((data2$dvage < data2$dvage[i]+6.5 & data2$dvage > data2$dvage[i]-3.5),1,0) 
+  data2$refg <- data2$agegrp*as.numeric(data2$group_m1)
+  data2$refg <- ifelse(data2$refg == data2$refg[i],1,NA)
+  data2$inc <- data2$refg*data2$fimngrs_dv
+  data2$absrk[i] <- sum(!is.na(data2$inc))-rank(data2$inc)[i]
+  data2$refinc[i]<-mean(data2$inc,na.rm=T)
+  data2$grpsize[i] <- sum(!is.na(data2$inc))
 }
-data1$relrk <- (data1$absrk-1/data1$grpsize-1)
-write_dta(data1,"rrankm2.dta")
-save(data1, file = "rrankm2.RData")
+data2$absrk1 <- data2$grpsize-data2$absrk
+round(data2$absrk1, digits = 0)
+data2$relrk <- (data2$absrk/data2$grpsize-1)
+data2$grpsize1<-ifelse(data2$grpsize>1,data2$grpsize,NA)
+data2$relrk1 <- (data2$absrk1-1)/(data2$grpsize1-1)
+write_dta(data2,"rrankm2.dta")
+save(data2, file = "rrankm2.RData")
+data1<-data2
 ```
 ```{r}
 for (i in 1:1){
@@ -231,9 +237,9 @@ data2$oprlg <- ifelse(data2$oprlg<0,NA,data2$oprlg)
 data2$relrk <- ifelse(is.na(data2$dvage),NA,data2$relrk)
 data2$absrk <- ifelse(is.na(data2$dvage),NA,data2$absrk)
 data2$grpsize <- ifelse(is.na(data2$dvage),NA,data2$grpsize)
-save(data2,file = "use_reg.RData")
-load("use_reg.RData")
-write_dta(data2,"use_reg.dta")
+save(data2,file = "use_reg2.RData")
+load("use_reg2.RData")
+write_dta(data2,"use_reg2.dta")
 stargazer(as.data.frame(data2),type = "latex", title='Summary Statistics',out = "summarys1.txt")
 plot(data2$relrk,data2$fimngrs_dv)
 ```

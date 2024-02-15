@@ -228,7 +228,8 @@ for (i in 1:1){
 
 summary statistics
 ```{r}
-data2 <- subset(data1,select = !(names(data1) %in% c("pidp","hidp","scend","edu3","gor_dv","refg","inc","agegrp","groupm1")))
+data2 <- read_dta("rrankm2.dta")
+data2 <- subset(data2,select = !(names(data2) %in% c("pidp","hidp","scend","edu3","gor_dv","refg","inc","agegrp","groupm1")))
 data2$dvage <- ifelse(data2$dvage <0,NA,data2$dvage)
 data2$jbstat <- ifelse(data2$jbstat<0,NA,data2$jbstat)
 data2$marstat_dv <- ifelse(data2$marstat_dv<0,NA,data2$marstat_dv)
@@ -237,6 +238,11 @@ data2$oprlg <- ifelse(data2$oprlg<0,NA,data2$oprlg)
 data2$relrk <- ifelse(is.na(data2$dvage),NA,data2$relrk)
 data2$absrk <- ifelse(is.na(data2$dvage),NA,data2$absrk)
 data2$grpsize <- ifelse(is.na(data2$dvage),NA,data2$grpsize)
+data2$absrk1 <- data2$grpsize-data2$absrk
+round(data2$absrk1, digits = 0)
+data2$relrk <- (data2$absrk/data2$grpsize-1)
+data2$grpsize1<-ifelse(data2$grpsize>1,data2$grpsize,NA)
+data2$relrk1 <- (data2$absrk1-1)/(data2$grpsize1-1)
 save(data2,file = "use_reg2.RData")
 load("use_reg2.RData")
 write_dta(data2,"use_reg2.dta")

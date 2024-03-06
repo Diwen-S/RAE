@@ -1,0 +1,1507 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("E:\\Curriculum001\\UG3\\RAE\\Code\\dataCleaning")
+```
+
+
+  ___  ____  ____  ____  ____ ®
+ /__    /   ____/   /   ____/      17.0
+___/   /   /___/   /   /___/       SE—Standard Edition
+
+ Statistics and Data Science       Copyright 1985-2021 StataCorp LLC
+                                   StataCorp
+                                   4905 Lakeway Drive
+                                   College Station, Texas 77845 USA
+                                   800-STATA-PC        https://www.stata.com
+                                   979-696-4600        stata@stata.com
+
+Stata license: Unlimited-user network, expiring 30 Apr 2024
+Serial number: 401709300025
+  Licensed to: u2105840
+               University of Warwick
+
+Notes:
+      1. Unicode is supported; see help unicode_advice.
+      2. Maximum number of variables is set to 5,000 but can be increased;
+          see help set_maxvar.
+
+. doedit "E:\Curriculum001\UG3\RAE\Code\dataCleaning\2.2.do" 
+
+. do "C:\Users\75972\AppData\Local\Temp\STD2e68_000000.tmp"
+
+. use "E:\Curriculum001\UG3\RAE\Code\dataCleaning\use_reg4.dta" 
+
+. 
+end of do-file
+
+. do "C:\Users\75972\AppData\Local\Temp\STD2e68_000000.tmp"
+
+. feologit sclfsato relrk fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbs
+> tat i.marstat_dv i.wave if fimngrs_dv > 100，group(pid)
+unknown function 100，group()
+r(133);
+
+end of do-file
+
+r(133);
+
+. do "C:\Users\75972\AppData\Local\Temp\STD2e68_000000.tmp"
+
+. feologit sclfsato relrk fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbs
+> tat i.marstat_dv i.wave，group(pid)
+variable wave，group not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. tab wave
+
+       wave |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     36,256       11.57       11.57
+          2 |     31,062        9.91       21.48
+          3 |     28,890        9.22       30.71
+          4 |     27,697        8.84       39.54
+          5 |     26,160        8.35       47.89
+          6 |     25,199        8.04       55.94
+          7 |     26,735        8.53       64.47
+          8 |     25,418        8.11       72.58
+          9 |     23,276        7.43       80.01
+         10 |     22,249        7.10       87.11
+         11 |     20,985        6.70       93.81
+         12 |     19,402        6.19      100.00
+------------+-----------------------------------
+      Total |    313,329      100.00
+
+. do "C:\Users\75972\AppData\Local\Temp\STD2e68_000000.tmp"
+
+. feologit sclfsato relrk fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbs
+> tat i.marstat_dv wave，group(pid)
+variable wave，group not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "C:\Users\75972\AppData\Local\Temp\STD2e68_000000.tmp"
+
+. use "E:\Curriculum001\UG3\RAE\Code\dataCleaning\use_reg4.dta" 
+
+. 
+. feologit sclfsato relrk fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbs
+> tat i.marstat_dv i.wave，group(pid)
+variable wave，group not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. help feologit
+
+. do "C:\Users\75972\AppData\Local\Temp\STD2e68_000000.tmp"
+
+. feologit sclfsato relrk fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbs
+> tat i.marstat_dv wave，group(pid)
+variable wave，group not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "C:\Users\75972\AppData\Local\Temp\STD2e68_000000.tmp"
+
+. feologit sclfsato relrk fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbs
+> tat i.marstat_dv ，group(pid)
+，group invalid name
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\75972\AppData\Local\Temp\STD2e68_000000.tmp"
+
+. feologit sclfsato relrk fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbs
+> tat i.marstat_dv wave，group(pidp)
+variable wave，group not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "C:\Users\75972\AppData\Local\Temp\STD2e68_000000.tmp"
+
+. 
+. feologit sclfsato relrk fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbs
+> tat i.marstat_dv i.wave ，group(pidp)
+，group invalid name
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\75972\AppData\Local\Temp\STD2e68_000000.tmp"
+
+. feologit sclfsato relrk fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbs
+> tat i.marstat_dv i.wave ,group(pidp)
+
+note: multiple positive outcomes within groups encountered.
+
+Iteration 0:   log conditional likelihood = -283297.04  
+Iteration 1:   log conditional likelihood =  -282695.8  
+Iteration 2:   log conditional likelihood = -282695.45  
+Iteration 3:   log conditional likelihood = -282695.42  
+Iteration 4:   log conditional likelihood = -282695.41  
+Iteration 5:   log conditional likelihood = -282695.41  
+Iteration 6:   log conditional likelihood = -282695.41  
+Iteration 7:   log conditional likelihood = -282695.41  
+warning: variance matrix is nonsymmetric or highly singular.
+
+Fixed-effects ordered logistic regression
+
+                                         N. of obs. (inc. copies) =     766015
+                                         N. of observations       =     274545
+                                         N. of panel units        =      38822
+                                         Wald chi2(0)             =          .
+                                         Prob > chi2              =          .
+Log conditional likelihood = -282695.41  Pseudo R2                =     0.0136
+                                   (Std. err. adjusted for 38,822 clusters in pidp)
+-----------------------------------------------------------------------------------
+                  |               Robust
+         sclfsato | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+            relrk |  -.2423179          .        .       .            .           .
+       fimngrs_dv |  -.0000179          .        .       .            .           .
+            dvage |   .0455225          .        .       .            .           .
+              age |   .0202914          .        .       .            .           .
+                  |
+              sex |
+               2  |  -.4205339          .        .       .            .           .
+                  |
+          region4 |
+           Wales  |   .1925415          .        .       .            .           .
+        Scotland  |  -.0059035          .        .       .            .           .
+Northern Ireland  |   1.229246          .        .       .            .           .
+                  |
+             edu2 |
+            high  |   .2174736          .        .       .            .           .
+           hhsize |  -.0386329          .        .       .            .           .
+          nchresp |   .0327549          .        .       .            .           .
+         2.health |    .253654          .        .       .            .           .
+                  |
+           jbstat |
+               2  |   -.058176          .        .       .            .           .
+               3  |  -.5007628          .        .       .            .           .
+               4  |   .2343345          .        .       .            .           .
+               5  |   .4958029          .        .       .            .           .
+               6  |  -.1002416          .        .       .            .           .
+               7  |    .159668          .        .       .            .           .
+               8  |  -.7775813          .        .       .            .           .
+               9  |  -.1387964          .        .       .            .           .
+              10  |   .0661775          .        .       .            .           .
+              11  |    .192541          .        .       .            .           .
+              12  |  -.1436031          .        .       .            .           .
+              13  |  -.4515548          .        .       .            .           .
+              97  |  -.1808715          .        .       .            .           .
+                  |
+       marstat_dv |
+               1  |  -10.86516          .        .       .            .           .
+               2  |  -10.76406          .        .       .            .           .
+               3  |  -11.18474          .        .       .            .           .
+               4  |  -11.09032          .        .       .            .           .
+               5  |  -11.38521          .        .       .            .           .
+               6  |  -11.08084          .        .       .            .           .
+                  |
+             wave |
+               2  |  -.2105154          .        .       .            .           .
+               3  |  -.4740501          .        .       .            .           .
+               4  |   -.721898          .        .       .            .           .
+               5  |  -.8332686          .        .       .            .           .
+               6  |  -.5856346          .        .       .            .           .
+               7  |  -.6243594          .        .       .            .           .
+               8  |  -.8223361          .        .       .            .           .
+               9  |  -1.026146          .        .       .            .           .
+              10  |  -1.160753          .        .       .            .           .
+              11  |  -1.226079          .        .       .            .           .
+              12  |  -1.156758          .        .       .            .           .
+-----------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "C:\Users\75972\AppData\Local\Temp\STD2e68_000000.tmp"
+
+. ologit sclfsato relrk fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbsta
+> t i.marstat_dv i.wave
+
+Iteration 0:   log likelihood = -499346.31  
+Iteration 1:   log likelihood = -481498.66  
+Iteration 2:   log likelihood = -480834.71  
+Iteration 3:   log likelihood = -480834.02  
+Iteration 4:   log likelihood = -480834.02  
+
+Ordered logistic regression                           Number of obs =  312,294
+                                                      LR chi2(42)   = 37024.58
+                                                      Prob > chi2   =   0.0000
+Log likelihood = -480834.02                           Pseudo R2     =   0.0371
+
+-----------------------------------------------------------------------------------
+         sclfsato | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+            relrk |  -.1502524   .0220829    -6.80   0.000     -.193534   -.1069708
+       fimngrs_dv |   .0000467   4.94e-06     9.47   0.000     .0000371    .0000564
+            dvage |  -.0436191   .0013498   -32.31   0.000    -.0462647   -.0409735
+              age |   .0242781   .0006901    35.18   0.000     .0229254    .0256307
+                  |
+              sex |
+               2  |   .1196144   .0079285    15.09   0.000     .1040749    .1351539
+                  |
+          region4 |
+           Wales  |   .0185196   .0157113     1.18   0.239     -.012274    .0493132
+        Scotland  |   .1037784    .012941     8.02   0.000     .0784145    .1291424
+Northern Ireland  |   .1981072   .0168277    11.77   0.000     .1651254     .231089
+                  |
+             edu2 |
+            high  |  -.0340328   .0202665    -1.68   0.093    -.0737545    .0056888
+           hhsize |  -.0506837   .0029842   -16.98   0.000    -.0565326   -.0448348
+          nchresp |   .0000766   .0055772     0.01   0.989    -.0108545    .0110077
+         2.health |   .6716642   .0075356    89.13   0.000     .6568946    .6864337
+                  |
+           jbstat |
+               2  |  -.0840244   .0129208    -6.50   0.000    -.1093487      -.0587
+               3  |  -.7123198   .0206406   -34.51   0.000    -.7527746    -.671865
+               4  |   .4021862    .016815    23.92   0.000     .3692295    .4351429
+               5  |   .4151699   .0437767     9.48   0.000     .3293691    .5009707
+               6  |  -.1948533   .0203196    -9.59   0.000     -.234679   -.1550276
+               7  |   .2649143   .0262711    10.08   0.000     .2134238    .3164047
+               8  |  -1.370274   .0219781   -62.35   0.000     -1.41335   -1.327198
+               9  |  -.2676284    .137676    -1.94   0.052    -.5374684    .0022117
+              10  |  -.0944883   .1368148    -0.69   0.490    -.3626404    .1736639
+              11  |   .3655501   .1099493     3.32   0.001     .1500534    .5810468
+              12  |   -.278501   .0977185    -2.85   0.004    -.4700257   -.0869762
+              13  |  -.4866479   .2710772    -1.80   0.073    -1.017949    .0446538
+              97  |  -.2597606   .0500619    -5.19   0.000      -.35788   -.1616411
+                  |
+       marstat_dv |
+               1  |  -.2505016   1.261028    -0.20   0.843    -2.722071    2.221068
+               2  |  -.4613828   1.261037    -0.37   0.714     -2.93297    2.010204
+               3  |   -.767233   1.261113    -0.61   0.543     -3.23897    1.704504
+               4  |  -.8758956   1.261092    -0.69   0.487    -3.347591      1.5958
+               5  |   -1.04334   1.261246    -0.83   0.408    -3.515337    1.428657
+               6  |   -.779817   1.260988    -0.62   0.536    -3.251308    1.691674
+                  |
+             wave |
+               2  |   -.057886   .0143189    -4.04   0.000    -.0859505   -.0298214
+               3  |  -.1645557   .0145547   -11.31   0.000    -.1930825    -.136029
+               4  |  -.2802473   .0147331   -19.02   0.000    -.3091237   -.2513709
+               5  |   -.302837   .0149688   -20.23   0.000    -.3321753   -.2734988
+               6  |   -.087645   .0152034    -5.76   0.000    -.1174432   -.0578469
+               7  |  -.0563204   .0150155    -3.75   0.000    -.0857502   -.0268906
+               8  |  -.1095121   .0152683    -7.17   0.000    -.1394374   -.0795869
+               9  |  -.2074069   .0156405   -13.26   0.000    -.2380617   -.1767521
+              10  |  -.2864567    .015763   -18.17   0.000    -.3173517   -.2555618
+              11  |  -.2910962   .0160562   -18.13   0.000    -.3225657   -.2596267
+              12  |   -.189365   .0166293   -11.39   0.000    -.2219579   -.1567722
+------------------+----------------------------------------------------------------
+            /cut1 |  -4.883135   1.261443                     -7.355518   -2.410752
+            /cut2 |  -3.643025   1.261405                     -6.115335   -1.170716
+            /cut3 |  -2.765451   1.261395                     -5.237739    -.293162
+            /cut4 |  -2.076258   1.261391                     -4.548539    .3960231
+            /cut5 |  -1.188135   1.261389                     -3.660413    1.284142
+            /cut6 |   1.214013   1.261389                     -1.258264     3.68629
+-----------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "C:\Users\75972\AppData\Local\Temp\STD2e68_000000.tmp"
+
+. ologit sclfsato relrk1 fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbst
+> at i.marstat_dv i.wave
+
+Iteration 0:   log likelihood = -499130.35  
+Iteration 1:   log likelihood = -481284.31  
+Iteration 2:   log likelihood = -480620.46  
+Iteration 3:   log likelihood = -480619.76  
+Iteration 4:   log likelihood = -480619.76  
+
+Ordered logistic regression                           Number of obs =  312,152
+                                                      LR chi2(42)   = 37021.18
+                                                      Prob > chi2   =   0.0000
+Log likelihood = -480619.76                           Pseudo R2     =   0.0371
+
+-----------------------------------------------------------------------------------
+         sclfsato | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+           relrk1 |   .1566284   .0218664     7.16   0.000     .1137711    .1994857
+       fimngrs_dv |   .0000455   4.92e-06     9.24   0.000     .0000358    .0000551
+            dvage |  -.0438142   .0013491   -32.48   0.000    -.0464584   -.0411701
+              age |   .0243944   .0006897    35.37   0.000     .0230427    .0257462
+                  |
+              sex |
+               2  |   .1189522   .0079296    15.00   0.000     .1034105    .1344939
+                  |
+          region4 |
+           Wales  |   .0203065   .0157186     1.29   0.196    -.0105015    .0511145
+        Scotland  |   .1069129   .0129554     8.25   0.000     .0815208     .132305
+Northern Ireland  |   .2018806   .0168291    12.00   0.000     .1688961     .234865
+                  |
+             edu2 |
+            high  |  -.0252138    .020422    -1.23   0.217    -.0652401    .0148126
+           hhsize |  -.0506104   .0029849   -16.96   0.000    -.0564608     -.04476
+          nchresp |   .0002017   .0055782     0.04   0.971    -.0107315    .0111348
+         2.health |   .6714245   .0075373    89.08   0.000     .6566517    .6861973
+                  |
+           jbstat |
+               2  |  -.0848053   .0129229    -6.56   0.000    -.1101337   -.0594769
+               3  |  -.7121348   .0206416   -34.50   0.000    -.7525917   -.6716779
+               4  |   .4005377   .0168239    23.81   0.000     .3675634     .433512
+               5  |   .4132922   .0437851     9.44   0.000      .327475    .4991094
+               6  |   -.194765   .0203228    -9.58   0.000     -.234597    -.154933
+               7  |   .2643476   .0262765    10.06   0.000     .2128467    .3158486
+               8  |  -1.371126   .0219834   -62.37   0.000    -1.414213   -1.328039
+               9  |  -.2704877   .1382583    -1.96   0.050     -.541469    .0004937
+              10  |  -.0950538    .136808    -0.69   0.487    -.3631925    .1730849
+              11  |   .3637189   .1099495     3.31   0.001     .1482219     .579216
+              12  |   -.279272   .0977149    -2.86   0.004    -.4707897   -.0877543
+              13  |  -.4873707   .2710881    -1.80   0.072    -1.018694    .0439521
+              97  |  -.2597468   .0500613    -5.19   0.000    -.3578651   -.1616284
+                  |
+       marstat_dv |
+               1  |   -.249693   1.260943    -0.20   0.843    -2.721097    2.221711
+               2  |  -.4607508   1.260952    -0.37   0.715    -2.932172    2.010671
+               3  |  -.7676524   1.261029    -0.61   0.543    -3.239224    1.703919
+               4  |  -.8757456   1.261008    -0.69   0.487    -3.347276    1.595784
+               5  |  -1.043129   1.261162    -0.83   0.408    -3.514961    1.428703
+               6  |  -.7794379   1.260904    -0.62   0.536    -3.250764    1.691888
+                  |
+             wave |
+               2  |  -.0579989   .0143214    -4.05   0.000    -.0860683   -.0299295
+               3  |  -.1646446   .0145577   -11.31   0.000    -.1931772   -.1361119
+               4  |  -.2802303    .014736   -19.02   0.000    -.3091123   -.2513482
+               5  |   -.302416   .0149726   -20.20   0.000    -.3317617   -.2730702
+               6  |  -.0871336    .015207    -5.73   0.000    -.1169388   -.0573284
+               7  |  -.0562465   .0150189    -3.75   0.000    -.0856829   -.0268101
+               8  |  -.1089793   .0152731    -7.14   0.000     -.138914   -.0790447
+               9  |  -.2065971   .0156462   -13.20   0.000    -.2372631   -.1759312
+              10  |  -.2856007   .0157678   -18.11   0.000     -.316505   -.2546964
+              11  |  -.2902877   .0160621   -18.07   0.000    -.3217688   -.2588067
+              12  |  -.1883076   .0166374   -11.32   0.000    -.2209162    -.155699
+------------------+----------------------------------------------------------------
+            /cut1 |  -4.885853   1.261358                     -7.358068   -2.413637
+            /cut2 |  -3.645505    1.26132                     -6.117647   -1.173363
+            /cut3 |  -2.767825   1.261309                     -5.239946   -.2957034
+            /cut4 |   -2.07865   1.261306                     -4.550764    .3934635
+            /cut5 |  -1.190742   1.261304                     -3.662852    1.281367
+            /cut6 |   1.211422   1.261304                     -1.260688    3.683531
+-----------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. xtset pdip
+variable pdip not found
+r(111);
+
+. xtset pidp
+
+Panel variable: pidp (unbalanced)
+
+. feologit sclfsato relrk1 fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.hea
+> lth i.jbstat i.marstat_dv i.wave
+note: group() not specified; assuming group(pidp) from panel identifier
+
+note: multiple positive outcomes within groups encountered.
+
+Iteration 0:   log conditional likelihood = -283128.91  
+Iteration 1:   log conditional likelihood = -282524.52  
+Iteration 2:   log conditional likelihood = -282524.16  
+Iteration 3:   log conditional likelihood = -282524.13  
+Iteration 4:   log conditional likelihood = -282524.13  
+Iteration 5:   log conditional likelihood = -282524.13  
+Iteration 6:   log conditional likelihood = -282524.13  
+Iteration 7:   log conditional likelihood = -282524.13  
+warning: variance matrix is nonsymmetric or highly singular.
+
+Fixed-effects ordered logistic regression
+
+                                         N. of obs. (inc. copies) =     765561
+                                         N. of observations       =     274402
+                                         N. of panel units        =      38810
+                                         Wald chi2(0)             =          .
+                                         Prob > chi2              =          .
+Log conditional likelihood = -282524.13  Pseudo R2                =     0.0136
+                                   (Std. err. adjusted for 38,810 clusters in pidp)
+-----------------------------------------------------------------------------------
+                  |               Robust
+         sclfsato | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+           relrk1 |   .2452408          .        .       .            .           .
+       fimngrs_dv |  -.0000187          .        .       .            .           .
+            dvage |   .0449632          .        .       .            .           .
+              age |   .0205839          .        .       .            .           .
+                  |
+              sex |
+               2  |  -.4210669          .        .       .            .           .
+                  |
+          region4 |
+           Wales  |   .2092661          .        .       .            .           .
+        Scotland  |  -.0027402          .        .       .            .           .
+Northern Ireland  |   1.261971          .        .       .            .           .
+                  |
+             edu2 |
+            high  |   .2204785          .        .       .            .           .
+           hhsize |   -.038383          .        .       .            .           .
+          nchresp |   .0328351          .        .       .            .           .
+         2.health |    .253959          .        .       .            .           .
+                  |
+           jbstat |
+               2  |  -.0606426          .        .       .            .           .
+               3  |  -.5028993          .        .       .            .           .
+               4  |    .231607          .        .       .            .           .
+               5  |   .4927429          .        .       .            .           .
+               6  |  -.1020794          .        .       .            .           .
+               7  |   .1560233          .        .       .            .           .
+               8  |  -.7797753          .        .       .            .           .
+               9  |  -.1497466          .        .       .            .           .
+              10  |   .0642648          .        .       .            .           .
+              11  |   .1896472          .        .       .            .           .
+              12  |  -.1460435          .        .       .            .           .
+              13  |   -.454035          .        .       .            .           .
+              97  |  -.1842271          .        .       .            .           .
+                  |
+       marstat_dv |
+               1  |  -10.86278          .        .       .            .           .
+               2  |  -10.76174          .        .       .            .           .
+               3  |  -11.18374          .        .       .            .           .
+               4  |  -11.08673          .        .       .            .           .
+               5  |  -11.38185          .        .       .            .           .
+               6  |  -11.07951          .        .       .            .           .
+                  |
+             wave |
+               2  |  -.2106941          .        .       .            .           .
+               3  |   -.474392          .        .       .            .           .
+               4  |  -.7219055          .        .       .            .           .
+               5  |  -.8329755          .        .       .            .           .
+               6  |  -.5849409          .        .       .            .           .
+               7  |  -.6244204          .        .       .            .           .
+               8  |  -.8218977          .        .       .            .           .
+               9  |  -1.025546          .        .       .            .           .
+              10  |  -1.159753          .        .       .            .           .
+              11  |  -1.225504          .        .       .            .           .
+              12  |  -1.155739          .        .       .            .           .
+-----------------------------------------------------------------------------------
+
+. testnl
+invalid syntax
+r(198);
+
+. test
+
+ ( 1)  relrk1 = 0
+ ( 2)  fimngrs_dv = 0
+ ( 3)  dvage = 0
+ ( 4)  age = 0
+ ( 5)  1b.sex = 0
+ ( 6)  2.sex = 0
+ ( 7)  1b.region4 = 0
+ ( 8)  2.region4 = 0
+ ( 9)  3.region4 = 0
+ (10)  4.region4 = 0
+ (11)  1b.edu2 = 0
+ (12)  2.edu2 = 0
+ (13)  hhsize = 0
+ (14)  nchresp = 0
+ (15)  1b.health = 0
+ (16)  2.health = 0
+ (17)  1b.jbstat = 0
+ (18)  2.jbstat = 0
+ (19)  3.jbstat = 0
+ (20)  4.jbstat = 0
+ (21)  5.jbstat = 0
+ (22)  6.jbstat = 0
+ (23)  7.jbstat = 0
+ (24)  8.jbstat = 0
+ (25)  9.jbstat = 0
+ (26)  10.jbstat = 0
+ (27)  11.jbstat = 0
+ (28)  12.jbstat = 0
+ (29)  13.jbstat = 0
+ (30)  97.jbstat = 0
+ (31)  0b.marstat_dv = 0
+ (32)  1.marstat_dv = 0
+ (33)  2.marstat_dv = 0
+ (34)  3.marstat_dv = 0
+ (35)  4.marstat_dv = 0
+ (36)  5.marstat_dv = 0
+ (37)  6.marstat_dv = 0
+ (38)  1b.wave = 0
+ (39)  2.wave = 0
+ (40)  3.wave = 0
+ (41)  4.wave = 0
+ (42)  5.wave = 0
+ (43)  6.wave = 0
+ (44)  7.wave = 0
+ (45)  8.wave = 0
+ (46)  9.wave = 0
+ (47)  10.wave = 0
+ (48)  11.wave = 0
+ (49)  12.wave = 0
+       Constraint 1 dropped
+       Constraint 2 dropped
+       Constraint 3 dropped
+       Constraint 4 dropped
+       Constraint 5 dropped
+       Constraint 6 dropped
+       Constraint 7 dropped
+       Constraint 8 dropped
+       Constraint 9 dropped
+       Constraint 10 dropped
+       Constraint 11 dropped
+       Constraint 12 dropped
+       Constraint 13 dropped
+       Constraint 14 dropped
+       Constraint 15 dropped
+       Constraint 16 dropped
+       Constraint 17 dropped
+       Constraint 18 dropped
+       Constraint 19 dropped
+       Constraint 20 dropped
+       Constraint 21 dropped
+       Constraint 22 dropped
+       Constraint 23 dropped
+       Constraint 24 dropped
+       Constraint 25 dropped
+       Constraint 26 dropped
+       Constraint 27 dropped
+       Constraint 28 dropped
+       Constraint 29 dropped
+       Constraint 30 dropped
+       Constraint 31 dropped
+       Constraint 32 dropped
+       Constraint 33 dropped
+       Constraint 34 dropped
+       Constraint 35 dropped
+       Constraint 36 dropped
+       Constraint 37 dropped
+       Constraint 38 dropped
+       Constraint 39 dropped
+       Constraint 40 dropped
+       Constraint 41 dropped
+       Constraint 42 dropped
+       Constraint 43 dropped
+       Constraint 44 dropped
+       Constraint 45 dropped
+       Constraint 46 dropped
+       Constraint 47 dropped
+       Constraint 48 dropped
+       Constraint 49 dropped
+
+. feologit sclfsato relrk1 fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.hea
+> lth i.jbstat i.marstat_dv i.wave,or nolog
+note: group() not specified; assuming group(pidp) from panel identifier
+
+note: multiple positive outcomes within groups encountered.
+warning: variance matrix is nonsymmetric or highly singular.
+
+Fixed-effects ordered logistic regression
+
+                                         N. of obs. (inc. copies) =     765561
+                                         N. of observations       =     274402
+                                         N. of panel units        =      38810
+                                         Wald chi2(0)             =          .
+                                         Prob > chi2              =          .
+Log conditional likelihood = -282524.13  Pseudo R2                =     0.0136
+                                   (Std. err. adjusted for 38,810 clusters in pidp)
+-----------------------------------------------------------------------------------
+                  |               Robust
+         sclfsato | Odds Ratio   std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+           relrk1 |   1.277929          .        .       .            .           .
+       fimngrs_dv |   .9999813          .        .       .            .           .
+            dvage |   1.045989          .        .       .            .           .
+              age |   1.020797          .        .       .            .           .
+                  |
+              sex |
+               2  |   .6563462          .        .       .            .           .
+                  |
+          region4 |
+           Wales  |   1.232773          .        .       .            .           .
+        Scotland  |   .9972636          .        .       .            .           .
+Northern Ireland  |   3.532376          .        .       .            .           .
+                  |
+             edu2 |
+            high  |   1.246673          .        .       .            .           .
+           hhsize |   .9623443          .        .       .            .           .
+          nchresp |    1.03338          .        .       .            .           .
+         2.health |   1.289119          .        .       .            .           .
+                  |
+           jbstat |
+               2  |   .9411596          .        .       .            .           .
+               3  |   .6047747          .        .       .            .           .
+               4  |   1.260624          .        .       .            .           .
+               5  |     1.6368          .        .       .            .           .
+               6  |   .9029579          .        .       .            .           .
+               7  |   1.168853          .        .       .            .           .
+               8  |    .458509          .        .       .            .           .
+               9  |   .8609261          .        .       .            .           .
+              10  |   1.066375          .        .       .            .           .
+              11  |   1.208823          .        .       .            .           .
+              12  |   .8641201          .        .       .            .           .
+              13  |   .6350605          .        .       .            .           .
+              97  |   .8317469          .        .       .            .           .
+                  |
+       marstat_dv |
+               1  |   .0000192          .        .       .            .           .
+               2  |   .0000212          .        .       .            .           .
+               3  |   .0000139          .        .       .            .           .
+               4  |   .0000153          .        .       .            .           .
+               5  |   .0000114          .        .       .            .           .
+               6  |   .0000154          .        .       .            .           .
+                  |
+             wave |
+               2  |   .8100218          .        .       .            .           .
+               3  |   .6222633          .        .       .            .           .
+               4  |   .4858256          .        .       .            .           .
+               5  |   .4347537          .        .       .            .           .
+               6  |   .5571388          .        .       .            .           .
+               7  |   .5355718          .        .       .            .           .
+               8  |   .4395966          .        .       .            .           .
+               9  |   .3586005          .        .       .            .           .
+              10  |   .3135636          .        .       .            .           .
+              11  |   .2936096          .        .       .            .           .
+              12  |   .3148248          .        .       .            .           .
+-----------------------------------------------------------------------------------
+
+. ologit sclfsato relrk1 fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.healt
+> h i.jbstat i.marstat_dv i.wave
+
+Iteration 0:   log likelihood = -499130.35  
+Iteration 1:   log likelihood = -481284.31  
+Iteration 2:   log likelihood = -480620.46  
+Iteration 3:   log likelihood = -480619.76  
+Iteration 4:   log likelihood = -480619.76  
+
+Ordered logistic regression                           Number of obs =  312,152
+                                                      LR chi2(42)   = 37021.18
+                                                      Prob > chi2   =   0.0000
+Log likelihood = -480619.76                           Pseudo R2     =   0.0371
+
+-----------------------------------------------------------------------------------
+         sclfsato | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+           relrk1 |   .1566284   .0218664     7.16   0.000     .1137711    .1994857
+       fimngrs_dv |   .0000455   4.92e-06     9.24   0.000     .0000358    .0000551
+            dvage |  -.0438142   .0013491   -32.48   0.000    -.0464584   -.0411701
+              age |   .0243944   .0006897    35.37   0.000     .0230427    .0257462
+                  |
+              sex |
+               2  |   .1189522   .0079296    15.00   0.000     .1034105    .1344939
+                  |
+          region4 |
+           Wales  |   .0203065   .0157186     1.29   0.196    -.0105015    .0511145
+        Scotland  |   .1069129   .0129554     8.25   0.000     .0815208     .132305
+Northern Ireland  |   .2018806   .0168291    12.00   0.000     .1688961     .234865
+                  |
+             edu2 |
+            high  |  -.0252138    .020422    -1.23   0.217    -.0652401    .0148126
+           hhsize |  -.0506104   .0029849   -16.96   0.000    -.0564608     -.04476
+          nchresp |   .0002017   .0055782     0.04   0.971    -.0107315    .0111348
+         2.health |   .6714245   .0075373    89.08   0.000     .6566517    .6861973
+                  |
+           jbstat |
+               2  |  -.0848053   .0129229    -6.56   0.000    -.1101337   -.0594769
+               3  |  -.7121348   .0206416   -34.50   0.000    -.7525917   -.6716779
+               4  |   .4005377   .0168239    23.81   0.000     .3675634     .433512
+               5  |   .4132922   .0437851     9.44   0.000      .327475    .4991094
+               6  |   -.194765   .0203228    -9.58   0.000     -.234597    -.154933
+               7  |   .2643476   .0262765    10.06   0.000     .2128467    .3158486
+               8  |  -1.371126   .0219834   -62.37   0.000    -1.414213   -1.328039
+               9  |  -.2704877   .1382583    -1.96   0.050     -.541469    .0004937
+              10  |  -.0950538    .136808    -0.69   0.487    -.3631925    .1730849
+              11  |   .3637189   .1099495     3.31   0.001     .1482219     .579216
+              12  |   -.279272   .0977149    -2.86   0.004    -.4707897   -.0877543
+              13  |  -.4873707   .2710881    -1.80   0.072    -1.018694    .0439521
+              97  |  -.2597468   .0500613    -5.19   0.000    -.3578651   -.1616284
+                  |
+       marstat_dv |
+               1  |   -.249693   1.260943    -0.20   0.843    -2.721097    2.221711
+               2  |  -.4607508   1.260952    -0.37   0.715    -2.932172    2.010671
+               3  |  -.7676524   1.261029    -0.61   0.543    -3.239224    1.703919
+               4  |  -.8757456   1.261008    -0.69   0.487    -3.347276    1.595784
+               5  |  -1.043129   1.261162    -0.83   0.408    -3.514961    1.428703
+               6  |  -.7794379   1.260904    -0.62   0.536    -3.250764    1.691888
+                  |
+             wave |
+               2  |  -.0579989   .0143214    -4.05   0.000    -.0860683   -.0299295
+               3  |  -.1646446   .0145577   -11.31   0.000    -.1931772   -.1361119
+               4  |  -.2802303    .014736   -19.02   0.000    -.3091123   -.2513482
+               5  |   -.302416   .0149726   -20.20   0.000    -.3317617   -.2730702
+               6  |  -.0871336    .015207    -5.73   0.000    -.1169388   -.0573284
+               7  |  -.0562465   .0150189    -3.75   0.000    -.0856829   -.0268101
+               8  |  -.1089793   .0152731    -7.14   0.000     -.138914   -.0790447
+               9  |  -.2065971   .0156462   -13.20   0.000    -.2372631   -.1759312
+              10  |  -.2856007   .0157678   -18.11   0.000     -.316505   -.2546964
+              11  |  -.2902877   .0160621   -18.07   0.000    -.3217688   -.2588067
+              12  |  -.1883076   .0166374   -11.32   0.000    -.2209162    -.155699
+------------------+----------------------------------------------------------------
+            /cut1 |  -4.885853   1.261358                     -7.358068   -2.413637
+            /cut2 |  -3.645505    1.26132                     -6.117647   -1.173363
+            /cut3 |  -2.767825   1.261309                     -5.239946   -.2957034
+            /cut4 |   -2.07865   1.261306                     -4.550764    .3934635
+            /cut5 |  -1.190742   1.261304                     -3.662852    1.281367
+            /cut6 |   1.211422   1.261304                     -1.260688    3.683531
+-----------------------------------------------------------------------------------
+
+. feologit sclfsato relrk1 fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.hea
+> lth i.jbstat i.marstat_dv i.wave,or nolog threshold
+note: group() not specified; assuming group(pidp) from panel identifier
+
+note: multiple positive outcomes within groups encountered.
+
+Fixed-effects ordered logistic regression
+
+                                         N. of obs. (inc. copies) =    3276594
+                                         N. of observations       =     295408
+                                         N. of panel units        =      43944
+                                         Wald chi2(47)            =   69292.64
+                                         Prob > chi2              =     0.0000
+Log conditional likelihood = -721510.66  Pseudo R2                =     0.4580
+                                   (Std. err. adjusted for 43,944 clusters in pidp)
+-----------------------------------------------------------------------------------
+                  |               Robust
+         sclfsato | Odds Ratio   std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+           relrk1 |   1.291963   .0637592     5.19   0.000      1.17285    1.423172
+       fimngrs_dv |   .9999769   .0000118    -1.96   0.050     .9999539           1
+            dvage |   1.044393   .0202692     2.24   0.025     1.005412    1.084885
+              age |   1.019226   .0029414     6.60   0.000     1.013478    1.025008
+                  |
+              sex |
+               2  |   .6766127   .2402046    -1.10   0.271     .3374075     1.35683
+                  |
+          region4 |
+           Wales  |   1.195753   .2177042     0.98   0.326     .8368891      1.7085
+        Scotland  |   .9879858   .1634463    -0.07   0.942     .7143864     1.36637
+Northern Ireland  |    3.40434   1.075431     3.88   0.000     1.832898    6.323064
+                  |
+             edu2 |
+            high  |   1.078363   .4153277     0.20   0.845     .5069067    2.294047
+           hhsize |   .9609078   .0086287    -4.44   0.000     .9441437    .9779695
+          nchresp |   1.033943   .0171362     2.01   0.044     1.000896    1.068081
+         2.health |   1.280496   .0180354    17.55   0.000     1.245631    1.316338
+                  |
+           jbstat |
+               2  |   .9387478    .028629    -2.07   0.038     .8842801    .9965704
+               3  |   .6006709   .0240242   -12.74   0.000     .5553826    .6496521
+               4  |   1.245317   .0508729     5.37   0.000     1.149495    1.349127
+               5  |   1.545905   .1056561     6.37   0.000     1.352094    1.767498
+               6  |   .9133291   .0393073    -2.11   0.035      .839448    .9937127
+               7  |   1.133024   .0608161     2.33   0.020     1.019883    1.258717
+               8  |   .4566285    .022881   -15.64   0.000     .4139144    .5037506
+               9  |   .8538078   .1752996    -0.77   0.441     .5709468    1.276805
+              10  |    .995671   .2011371    -0.02   0.983     .6701364    1.479342
+              11  |   1.155284   .1748522     0.95   0.340     .8587356     1.55424
+              12  |   .8992275   .1230352    -0.78   0.438     .6877102    1.175801
+              13  |   .5720794    .174772    -1.83   0.068     .3143487     1.04112
+              97  |   .8507409   .0635062    -2.17   0.030     .7349483     .984777
+                  |
+       marstat_dv |
+               1  |   .7860032   .3379764    -0.56   0.575     .3383866    1.825726
+               2  |   .8603364   .3692848    -0.35   0.726     .3709407     1.99541
+               3  |   .5607466   .2428307    -1.34   0.182     .2399687    1.310324
+               4  |   .6313645    .272217    -1.07   0.286     .2711933    1.469878
+               5  |   .4773951   .2064875    -1.71   0.087      .204507    1.114417
+               6  |   .6384986   .2736505    -1.05   0.295     .2756438    1.479012
+                  |
+             wave |
+               2  |   .8148372    .021659    -7.70   0.000     .7734732    .8584132
+               3  |   .6292515   .0267709   -10.89   0.000     .5789096    .6839711
+               4  |   .5009489   .0299434   -11.56   0.000     .4455682    .5632129
+               5  |   .4492906   .0349697   -10.28   0.000      .385723    .5233341
+               6  |   .5709558   .0547583    -5.84   0.000     .4731152      .68903
+               7  |   .5481824   .0625501    -5.27   0.000     .4383279    .6855688
+               8  |   .4571672   .0604714    -5.92   0.000      .352763     .592471
+               9  |   .3771705   .0568253    -6.47   0.000     .2807334    .5067357
+              10  |   .3350871   .0565492    -6.48   0.000     .2407184    .4664513
+              11  |   .3163156   .0592252    -6.15   0.000     .2191524     .456557
+              12  |   .3383522   .0694138    -5.28   0.000     .2263304    .5058192
+------------------+----------------------------------------------------------------
+            /cut1 |          0  (constrained)
+            /cut2 |   1.510152   .0198404                      1.471265    1.549038
+            /cut3 |   2.557893   .0220488                      2.514678    2.601108
+            /cut4 |   3.410033   .0233527                      3.364262    3.455803
+            /cut5 |   4.558665   .0254135                      4.508855    4.608474
+            /cut6 |   7.609118   .0330085                      7.544422    7.673813
+-----------------------------------------------------------------------------------
+Note: Estimates are transformed only in the first equation.
+
+. test
+
+ ( 1)  [sclfsato]relrk1 = 0
+ ( 2)  [sclfsato]fimngrs_dv = 0
+ ( 3)  [sclfsato]dvage = 0
+ ( 4)  [sclfsato]age = 0
+ ( 5)  [sclfsato]1b.sex = 0
+ ( 6)  [sclfsato]2.sex = 0
+ ( 7)  [sclfsato]1b.region4 = 0
+ ( 8)  [sclfsato]2.region4 = 0
+ ( 9)  [sclfsato]3.region4 = 0
+ (10)  [sclfsato]4.region4 = 0
+ (11)  [sclfsato]1b.edu2 = 0
+ (12)  [sclfsato]2.edu2 = 0
+ (13)  [sclfsato]hhsize = 0
+ (14)  [sclfsato]nchresp = 0
+ (15)  [sclfsato]1b.health = 0
+ (16)  [sclfsato]2.health = 0
+ (17)  [sclfsato]1b.jbstat = 0
+ (18)  [sclfsato]2.jbstat = 0
+ (19)  [sclfsato]3.jbstat = 0
+ (20)  [sclfsato]4.jbstat = 0
+ (21)  [sclfsato]5.jbstat = 0
+ (22)  [sclfsato]6.jbstat = 0
+ (23)  [sclfsato]7.jbstat = 0
+ (24)  [sclfsato]8.jbstat = 0
+ (25)  [sclfsato]9.jbstat = 0
+ (26)  [sclfsato]10.jbstat = 0
+ (27)  [sclfsato]11.jbstat = 0
+ (28)  [sclfsato]12.jbstat = 0
+ (29)  [sclfsato]13.jbstat = 0
+ (30)  [sclfsato]97.jbstat = 0
+ (31)  [sclfsato]0b.marstat_dv = 0
+ (32)  [sclfsato]1.marstat_dv = 0
+ (33)  [sclfsato]2.marstat_dv = 0
+ (34)  [sclfsato]3.marstat_dv = 0
+ (35)  [sclfsato]4.marstat_dv = 0
+ (36)  [sclfsato]5.marstat_dv = 0
+ (37)  [sclfsato]6.marstat_dv = 0
+ (38)  [sclfsato]1b.wave = 0
+ (39)  [sclfsato]2.wave = 0
+ (40)  [sclfsato]3.wave = 0
+ (41)  [sclfsato]4.wave = 0
+ (42)  [sclfsato]5.wave = 0
+ (43)  [sclfsato]6.wave = 0
+ (44)  [sclfsato]7.wave = 0
+ (45)  [sclfsato]8.wave = 0
+ (46)  [sclfsato]9.wave = 0
+ (47)  [sclfsato]10.wave = 0
+ (48)  [sclfsato]11.wave = 0
+ (49)  [sclfsato]12.wave = 0
+ (50)  [/]cut1 = 0
+ (51)  [/]cut2 = 0
+ (52)  [/]cut3 = 0
+ (53)  [/]cut4 = 0
+ (54)  [/]cut5 = 0
+ (55)  [/]cut6 = 0
+       Constraint 5 dropped
+       Constraint 7 dropped
+       Constraint 11 dropped
+       Constraint 15 dropped
+       Constraint 17 dropped
+       Constraint 31 dropped
+       Constraint 38 dropped
+       Constraint 50 dropped
+
+           chi2( 47) =69292.64
+         Prob > chi2 =    0.0000
+
+
+. testnl
+invalid syntax
+r(198);
+
+. help feologit
+
+. omodel
+invalid syntax
+r(198);
+
+. oparallel
+oparallel can only be used after ologit
+r(198);
+
+. feologit sclfsato relrk1 fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.hea
+> lth i.jbstat i.marstat_dv i.wave,or threshold
+note: group() not specified; assuming group(pidp) from panel identifier
+
+note: multiple positive outcomes within groups encountered.
+
+Iteration 0:   log conditional likelihood = -748628.32  
+Iteration 1:   log conditional likelihood = -721829.17  
+Iteration 2:   log conditional likelihood = -721510.98  
+Iteration 3:   log conditional likelihood = -721510.66  
+Iteration 4:   log conditional likelihood = -721510.66  
+
+Fixed-effects ordered logistic regression
+
+                                         N. of obs. (inc. copies) =    3276594
+                                         N. of observations       =     295408
+                                         N. of panel units        =      43944
+                                         Wald chi2(47)            =   69292.64
+                                         Prob > chi2              =     0.0000
+Log conditional likelihood = -721510.66  Pseudo R2                =     0.4580
+                                   (Std. err. adjusted for 43,944 clusters in pidp)
+-----------------------------------------------------------------------------------
+                  |               Robust
+         sclfsato | Odds Ratio   std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+           relrk1 |   1.291963   .0637592     5.19   0.000      1.17285    1.423172
+       fimngrs_dv |   .9999769   .0000118    -1.96   0.050     .9999539           1
+            dvage |   1.044393   .0202692     2.24   0.025     1.005412    1.084885
+              age |   1.019226   .0029414     6.60   0.000     1.013478    1.025008
+                  |
+              sex |
+               2  |   .6766127   .2402046    -1.10   0.271     .3374075     1.35683
+                  |
+          region4 |
+           Wales  |   1.195753   .2177042     0.98   0.326     .8368891      1.7085
+        Scotland  |   .9879858   .1634463    -0.07   0.942     .7143864     1.36637
+Northern Ireland  |    3.40434   1.075431     3.88   0.000     1.832898    6.323064
+                  |
+             edu2 |
+            high  |   1.078363   .4153277     0.20   0.845     .5069067    2.294047
+           hhsize |   .9609078   .0086287    -4.44   0.000     .9441437    .9779695
+          nchresp |   1.033943   .0171362     2.01   0.044     1.000896    1.068081
+         2.health |   1.280496   .0180354    17.55   0.000     1.245631    1.316338
+                  |
+           jbstat |
+               2  |   .9387478    .028629    -2.07   0.038     .8842801    .9965704
+               3  |   .6006709   .0240242   -12.74   0.000     .5553826    .6496521
+               4  |   1.245317   .0508729     5.37   0.000     1.149495    1.349127
+               5  |   1.545905   .1056561     6.37   0.000     1.352094    1.767498
+               6  |   .9133291   .0393073    -2.11   0.035      .839448    .9937127
+               7  |   1.133024   .0608161     2.33   0.020     1.019883    1.258717
+               8  |   .4566285    .022881   -15.64   0.000     .4139144    .5037506
+               9  |   .8538078   .1752996    -0.77   0.441     .5709468    1.276805
+              10  |    .995671   .2011371    -0.02   0.983     .6701364    1.479342
+              11  |   1.155284   .1748522     0.95   0.340     .8587356     1.55424
+              12  |   .8992275   .1230352    -0.78   0.438     .6877102    1.175801
+              13  |   .5720794    .174772    -1.83   0.068     .3143487     1.04112
+              97  |   .8507409   .0635062    -2.17   0.030     .7349483     .984777
+                  |
+       marstat_dv |
+               1  |   .7860032   .3379764    -0.56   0.575     .3383866    1.825726
+               2  |   .8603364   .3692848    -0.35   0.726     .3709407     1.99541
+               3  |   .5607466   .2428307    -1.34   0.182     .2399687    1.310324
+               4  |   .6313645    .272217    -1.07   0.286     .2711933    1.469878
+               5  |   .4773951   .2064875    -1.71   0.087      .204507    1.114417
+               6  |   .6384986   .2736505    -1.05   0.295     .2756438    1.479012
+                  |
+             wave |
+               2  |   .8148372    .021659    -7.70   0.000     .7734732    .8584132
+               3  |   .6292515   .0267709   -10.89   0.000     .5789096    .6839711
+               4  |   .5009489   .0299434   -11.56   0.000     .4455682    .5632129
+               5  |   .4492906   .0349697   -10.28   0.000      .385723    .5233341
+               6  |   .5709558   .0547583    -5.84   0.000     .4731152      .68903
+               7  |   .5481824   .0625501    -5.27   0.000     .4383279    .6855688
+               8  |   .4571672   .0604714    -5.92   0.000      .352763     .592471
+               9  |   .3771705   .0568253    -6.47   0.000     .2807334    .5067357
+              10  |   .3350871   .0565492    -6.48   0.000     .2407184    .4664513
+              11  |   .3163156   .0592252    -6.15   0.000     .2191524     .456557
+              12  |   .3383522   .0694138    -5.28   0.000     .2263304    .5058192
+------------------+----------------------------------------------------------------
+            /cut1 |          0  (constrained)
+            /cut2 |   1.510152   .0198404                      1.471265    1.549038
+            /cut3 |   2.557893   .0220488                      2.514678    2.601108
+            /cut4 |   3.410033   .0233527                      3.364262    3.455803
+            /cut5 |   4.558665   .0254135                      4.508855    4.608474
+            /cut6 |   7.609118   .0330085                      7.544422    7.673813
+-----------------------------------------------------------------------------------
+Note: Estimates are transformed only in the first equation.
+
+. logitmarg, dydx(relrk1)
+
+Marginal effects at the average                 N. of observations=     295408
+                                                N. of panel units =      43944
+------------------------------------------------------------------------------
+             |     Margin   Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+           1 |  -.0057385   .0011055    -5.19   0.000    -.0079054   -.0035717
+           2 |  -.0118855   .0022898    -5.19   0.000    -.0163734   -.0073976
+           3 |  -.0161226   .0031061    -5.19   0.000    -.0222105   -.0100348
+           4 |  -.0153309   .0029536    -5.19   0.000    -.0211198   -.0095421
+           5 |  -.0140302    .002703    -5.19   0.000     -.019328   -.0087325
+           6 |   .0381872   .0073569     5.19   0.000     .0237679    .0526065
+           7 |   .0249206    .004801     5.19   0.000     .0155108    .0343305
+------------------------------------------------------------------------------
+
+. 
+
+
+
+
+
+
+
+
+6th Mar
+
+. feologit sclfsato relrk1 inc refinc dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jb
+> stat i.marstat_dv i.wave,or threshold
+note: group() not specified; assuming group(pidp) from panel identifier
+
+note: multiple positive outcomes within groups encountered.
+
+Iteration 0:   log conditional likelihood = -748407.13  
+Iteration 1:   log conditional likelihood = -721307.47  
+Iteration 2:   log conditional likelihood = -720986.88  
+Iteration 3:   log conditional likelihood = -720986.56  
+Iteration 4:   log conditional likelihood = -720986.56  
+
+Fixed-effects ordered logistic regression
+
+                                         N. of obs. (inc. copies) =    3274120
+                                         N. of observations       =     295408
+                                         N. of panel units        =      43944
+                                         Wald chi2(48)            =   68822.59
+                                         Prob > chi2              =     0.0000
+Log conditional likelihood = -720986.56  Pseudo R2                =     0.4583
+                                   (Std. err. adjusted for 43,944 clusters in pidp)
+-----------------------------------------------------------------------------------
+                  |               Robust
+         sclfsato | Odds Ratio   std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+           relrk1 |    1.16517   .0593759     3.00   0.003     1.054419    1.287555
+              inc |   1.000276   .0012227     0.23   0.822     .9978821    1.002675
+           refinc |   .9996942   .0000452    -6.76   0.000     .9996056    .9997828
+            dvage |   1.069148   .0188816     3.79   0.000     1.032774    1.106804
+              age |   1.010937   .0032175     3.42   0.001      1.00465    1.017263
+                  |
+              sex |
+               2  |   .6410656   .2361418    -1.21   0.227     .3114263    1.319622
+                  |
+          region4 |
+           Wales  |   1.069648   .1907417     0.38   0.706     .7541418    1.517151
+        Scotland  |   .9316431   .1601561    -0.41   0.680     .6651536      1.3049
+Northern Ireland  |   2.897429    .895224     3.44   0.001     1.581304    5.308968
+                  |
+             edu2 |
+            high  |   1.053095   .4064924     0.13   0.893     .4942029    2.244034
+           hhsize |    .962387   .0086183    -4.28   0.000     .9456428    .9794276
+          nchresp |   1.042836   .0173828     2.52   0.012     1.009317    1.077468
+         2.health |   1.274757   .0179398    17.25   0.000     1.240076    1.310407
+                  |
+           jbstat |
+               2  |   .9614049   .0290975    -1.30   0.193     .9060335     1.02016
+               3  |   .6185707   .0248111   -11.98   0.000     .5718043     .669162
+               4  |   1.243123   .0509655     5.31   0.000      1.14714    1.347136
+               5  |    1.55887   .1055581     6.56   0.000     1.365121    1.780117
+               6  |   .9150548    .038932    -2.09   0.037     .8418443     .994632
+               7  |   1.125285    .060723     2.19   0.029     1.012347    1.250821
+               8  |   .4614159   .0230817   -15.46   0.000     .4183236    .5089471
+               9  |   .8334536   .1814848    -0.84   0.403     .5439163    1.277117
+              10  |   1.016318   .1994926     0.08   0.934     .6917476    1.493178
+              11  |   1.196303   .1794398     1.19   0.232     .8915898    1.605157
+              12  |   .8425151   .1171962    -1.23   0.218     .6414654    1.106578
+              13  |   .6096414   .1993895    -1.51   0.130     .3211296     1.15736
+              97  |   .8467487   .0634424    -2.22   0.026     .7311029    .9806872
+                  |
+       marstat_dv |
+               1  |   .6429892   .0352302    -8.06   0.000     .5775177     .715883
+               2  |   .7027361   .0334067    -7.42   0.000      .640218    .7713592
+               3  |   .4836785   .0366086    -9.60   0.000     .4169953    .5610254
+               4  |   .5158556    .032559   -10.49   0.000     .4558304    .5837852
+               5  |   .3924696   .0281485   -13.04   0.000     .3410018    .4517056
+               6  |   .5169766   .0219446   -15.54   0.000     .4757066    .5618271
+                  |
+             wave |
+               2  |   .8278539   .0209725    -7.46   0.000     .7877524    .8699968
+               3  |   .6429371   .0251412   -11.30   0.000     .5955023    .6941504
+               4  |   .5105653    .027589   -12.44   0.000     .4592568     .567606
+               5  |   .4629328   .0324091   -11.00   0.000     .4035773    .5310179
+               6  |   .5967924   .0514251    -5.99   0.000     .5040527    .7065951
+               7  |   .5659187   .0577355    -5.58   0.000      .463355     .691185
+               8  |    .470384   .0555713    -6.38   0.000     .3731569     .592944
+               9  |   .3932392   .0528589    -6.94   0.000     .3021614    .5117697
+              10  |   .3487697   .0524531    -7.00   0.000     .2597302    .4683333
+              11  |   .3347741   .0558393    -6.56   0.000     .2414204    .4642264
+              12  |   .3557968   .0651154    -5.65   0.000     .2485542    .5093109
+------------------+----------------------------------------------------------------
+            /cut1 |          0  (constrained)
+            /cut2 |   1.482913   .0199656                      1.443781    1.522045
+            /cut3 |   2.546154   .0221733                      2.502695    2.589613
+            /cut4 |   3.401783   .0235246                      3.355675     3.44789
+            /cut5 |    4.55216   .0256133                      4.501959    4.602362
+            /cut6 |   7.596839   .0333325                      7.531508    7.662169
+-----------------------------------------------------------------------------------
+Note: Estimates are transformed only in the first equation.
+
+. margins, dydx(relrk1 refinc)
+
+Average marginal effects                               Number of obs = 295,408
+Model VCE: Robust
+
+dy/dx wrt: relrk1 refinc
+
+1._predict: Pr(sclfsato==1), predict(pu0 outcome(1))
+2._predict: Pr(sclfsato==2), predict(pu0 outcome(2))
+3._predict: Pr(sclfsato==3), predict(pu0 outcome(3))
+4._predict: Pr(sclfsato==4), predict(pu0 outcome(4))
+5._predict: Pr(sclfsato==5), predict(pu0 outcome(5))
+6._predict: Pr(sclfsato==6), predict(pu0 outcome(6))
+7._predict: Pr(sclfsato==7), predict(pu0 outcome(7))
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |      dy/dx   std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+relrk1       |
+    _predict |
+          1  |  -.0033364   .0018877    -1.77   0.077    -.0070362    .0003634
+          2  |  -.0070874    .003354    -2.11   0.035    -.0136612   -.0005136
+          3  |   -.007546   .0027739    -2.72   0.007    -.0129827   -.0021093
+          4  |  -.0048527   .0019332    -2.51   0.012    -.0086417   -.0010636
+          5  |   -.001687   .0029788    -0.57   0.571    -.0075254    .0041513
+          6  |   .0119868   .0072217     1.66   0.097    -.0021675    .0261411
+          7  |   .0125227   .0062699     2.00   0.046      .000234    .0248114
+-------------+----------------------------------------------------------------
+refinc       |
+    _predict |
+          1  |   6.67e-06   3.32e-06     2.01   0.044     1.72e-07    .0000132
+          2  |   .0000142   5.41e-06     2.62   0.009     3.58e-06    .0000248
+          3  |   .0000151   3.28e-06     4.60   0.000     8.67e-06    .0000215
+          4  |   9.71e-06   2.33e-06     4.17   0.000     5.14e-06    .0000143
+          5  |   3.38e-06   5.81e-06     0.58   0.561    -8.01e-06    .0000148
+          6  |   -.000024   .0000127    -1.89   0.059    -.0000488    8.79e-07
+          7  |  -.0000251   9.82e-06    -2.55   0.011    -.0000443   -5.80e-06
+------------------------------------------------------------------------------
+
+feologit sclfsato relrk1 inc dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.j
+> bstat i.marstat_dv i.wave,or threshold
+note: group() not specified; assuming group(pidp) from panel identifier
+
+note: multiple positive outcomes within groups encountered.
+
+Iteration 0:   log conditional likelihood = -748628.32  
+Iteration 1:   log conditional likelihood = -721829.17  
+Iteration 2:   log conditional likelihood = -721510.98  
+Iteration 3:   log conditional likelihood = -721510.66  
+Iteration 4:   log conditional likelihood = -721510.66  
+
+Fixed-effects ordered logistic regression
+
+                                         N. of obs. (inc. copies) =    3276594
+                                         N. of observations       =     295408
+                                         N. of panel units        =      43944
+                                         Wald chi2(47)            =   69292.64
+                                         Prob > chi2              =     0.0000
+Log conditional likelihood = -721510.66  Pseudo R2                =     0.4580
+                                   (Std. err. adjusted for 43,944 clusters in pidp)
+-----------------------------------------------------------------------------------
+                  |               Robust
+         sclfsato | Odds Ratio   std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+           relrk1 |   1.291963   .0637592     5.19   0.000      1.17285    1.423172
+              inc |   .9976975   .0011728    -1.96   0.050     .9954016    .9999988
+            dvage |   1.044393   .0202692     2.24   0.025     1.005412    1.084885
+              age |   1.019226   .0029414     6.60   0.000     1.013478    1.025008
+                  |
+              sex |
+               2  |   .6766127   .2402046    -1.10   0.271     .3374075     1.35683
+                  |
+          region4 |
+           Wales  |   1.195753   .2177042     0.98   0.326     .8368891      1.7085
+        Scotland  |   .9879858   .1634463    -0.07   0.942     .7143864     1.36637
+Northern Ireland  |    3.40434   1.075431     3.88   0.000     1.832898    6.323064
+                  |
+             edu2 |
+            high  |   1.078363   .4153277     0.20   0.845     .5069067    2.294047
+           hhsize |   .9609078   .0086287    -4.44   0.000     .9441437    .9779695
+          nchresp |   1.033943   .0171362     2.01   0.044     1.000896    1.068081
+         2.health |   1.280496   .0180354    17.55   0.000     1.245631    1.316338
+                  |
+           jbstat |
+               2  |   .9387478    .028629    -2.07   0.038     .8842801    .9965704
+               3  |   .6006709   .0240242   -12.74   0.000     .5553826    .6496521
+               4  |   1.245317   .0508729     5.37   0.000     1.149495    1.349127
+               5  |   1.545905   .1056561     6.37   0.000     1.352094    1.767498
+               6  |   .9133291   .0393073    -2.11   0.035      .839448    .9937127
+               7  |   1.133024   .0608161     2.33   0.020     1.019883    1.258717
+               8  |   .4566285    .022881   -15.64   0.000     .4139144    .5037506
+               9  |   .8538078   .1752996    -0.77   0.441     .5709468    1.276805
+              10  |    .995671   .2011371    -0.02   0.983     .6701364    1.479342
+              11  |   1.155284   .1748522     0.95   0.340     .8587356     1.55424
+              12  |   .8992275   .1230352    -0.78   0.438     .6877102    1.175801
+              13  |   .5720794    .174772    -1.83   0.068     .3143487     1.04112
+              97  |   .8507409   .0635062    -2.17   0.030     .7349483     .984777
+                  |
+       marstat_dv |
+               1  |   .7860032   .3379764    -0.56   0.575     .3383866    1.825726
+               2  |   .8603364   .3692848    -0.35   0.726     .3709407     1.99541
+               3  |   .5607466   .2428307    -1.34   0.182     .2399687    1.310324
+               4  |   .6313645    .272217    -1.07   0.286     .2711933    1.469878
+               5  |   .4773951   .2064875    -1.71   0.087      .204507    1.114417
+               6  |   .6384986   .2736505    -1.05   0.295     .2756438    1.479012
+                  |
+             wave |
+               2  |   .8148372    .021659    -7.70   0.000     .7734732    .8584132
+               3  |   .6292515   .0267709   -10.89   0.000     .5789096    .6839711
+               4  |   .5009489   .0299434   -11.56   0.000     .4455682    .5632129
+               5  |   .4492906   .0349697   -10.28   0.000      .385723    .5233341
+               6  |   .5709558   .0547583    -5.84   0.000     .4731152      .68903
+               7  |   .5481824   .0625501    -5.27   0.000     .4383279    .6855688
+               8  |   .4571672   .0604714    -5.92   0.000      .352763     .592471
+               9  |   .3771705   .0568253    -6.47   0.000     .2807334    .5067357
+              10  |   .3350871   .0565492    -6.48   0.000     .2407184    .4664513
+              11  |   .3163156   .0592252    -6.15   0.000     .2191524     .456557
+              12  |   .3383522   .0694138    -5.28   0.000     .2263304    .5058192
+------------------+----------------------------------------------------------------
+            /cut1 |          0  (constrained)
+            /cut2 |   1.510152   .0198404                      1.471265    1.549038
+            /cut3 |   2.557893   .0220488                      2.514678    2.601108
+            /cut4 |   3.410033   .0233527                      3.364262    3.455803
+            /cut5 |   4.558665   .0254135                      4.508855    4.608474
+            /cut6 |   7.609118   .0330085                      7.544422    7.673813
+-----------------------------------------------------------------------------------
+Note: Estimates are transformed only in the first equation.
+
+ ologit sclfsato relrk1 inc refinc dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbst
+> at i.marstat_dv i.wave,or
+
+Iteration 0:   log likelihood = -499130.35  
+Iteration 1:   log likelihood = -481241.57  
+Iteration 2:   log likelihood = -480574.97  
+Iteration 3:   log likelihood = -480574.28  
+Iteration 4:   log likelihood = -480574.28  
+
+Ordered logistic regression                           Number of obs =  312,152
+                                                      LR chi2(43)   = 37112.15
+                                                      Prob > chi2   =   0.0000
+Log likelihood = -480574.28                           Pseudo R2     =   0.0372
+
+-----------------------------------------------------------------------------------
+         sclfsato | Odds ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+           relrk1 |   1.042664   .0260414     1.67   0.094     .9928529    1.094974
+              inc |    1.00751   .0005855    12.87   0.000     1.006363    1.008658
+           refinc |   .9998966   .0000108    -9.54   0.000     .9998753    .9999178
+            dvage |   .9617694   .0013854   -27.06   0.000     .9590579    .9644886
+              age |   1.021993    .000759    29.29   0.000     1.020506    1.023481
+                  |
+              sex |
+               2  |     1.0726   .0101271     7.42   0.000     1.052934    1.092633
+                  |
+          region4 |
+           Wales  |   1.007827   .0158981     0.49   0.621     .9771441    1.039473
+        Scotland  |   1.112929    .014421     8.26   0.000      1.08502    1.141555
+Northern Ireland  |   1.208698   .0204022    11.23   0.000     1.169364    1.249354
+                  |
+             edu2 |
+            high  |   .9890483   .0202555    -0.54   0.591     .9501345    1.029556
+           hhsize |   .9495688   .0028369   -17.32   0.000     .9440249    .9551453
+          nchresp |   1.005736   .0056411     1.02   0.308     .9947405    1.016854
+         2.health |   1.959807   .0147768    89.24   0.000     1.931058    1.988984
+                  |
+           jbstat |
+               2  |   .9201489    .011892    -6.44   0.000     .8971337    .9437546
+               3  |   .4846283   .0100228   -35.03   0.000     .4653767    .5046762
+               4  |   1.474679   .0248824    23.02   0.000     1.426708    1.524263
+               5  |   1.514085   .0663084     9.47   0.000     1.389544    1.649787
+               6  |   .8150907    .016588   -10.05   0.000     .7832186    .8482597
+               7  |   1.262318   .0334202     8.80   0.000     1.198487     1.32955
+               8  |   .2507321   .0055215   -62.82   0.000     .2401403    .2617909
+               9  |   .7450789    .102992    -2.13   0.033     .5682521    .9769302
+              10  |   .8968676   .1227357    -0.80   0.426     .6858703    1.172775
+              11  |    1.38381   .1522249     2.95   0.003     1.115426     1.71677
+              12  |   .7519304   .0734566    -2.92   0.004     .6209021    .9106095
+              13  |   .6086957   .1648967    -1.83   0.067     .3579384    1.035123
+              97  |   .7656995   .0383596    -5.33   0.000     .6940892    .8446979
+                  |
+       marstat_dv |
+               1  |   .8106964   1.023862    -0.17   0.868     .0682088    9.635536
+               2  |   .6562368   .8287945    -0.33   0.739     .0552122    7.799842
+               3  |   .4899845   .6188665    -0.56   0.572      .041218    5.824757
+               4  |    .432143   .5457987    -0.66   0.507     .0363543    5.136876
+               5  |   .3672743   .4639262    -0.79   0.428     .0308878    4.367111
+               6  |   .4751455   .6000614    -0.59   0.556     .0399801     5.64689
+                  |
+             wave |
+               2  |   .9473633   .0135723    -3.77   0.000      .921132    .9743415
+               3  |   .8557945   .0124845   -10.67   0.000     .8316719    .8806168
+               4  |   .7641388   .0112962   -18.20   0.000     .7423164    .7866027
+               5  |    .750467   .0113015   -19.06   0.000     .7286401    .7729478
+               6  |   .9359739   .0143816    -4.31   0.000     .9082068      .96459
+               7  |   .9653014   .0146514    -2.33   0.020     .9370081     .994449
+               8  |   .9185964   .0142199    -5.49   0.000     .8911445    .9468939
+               9  |   .8361834   .0133063   -11.24   0.000      .810506    .8626742
+              10  |   .7747859   .0124645   -15.86   0.000      .750737     .799605
+              11  |    .774435   .0127534   -15.52   0.000     .7498379     .799839
+              12  |    .861801   .0147771    -8.67   0.000     .8333196    .8912558
+------------------+----------------------------------------------------------------
+            /cut1 |  -4.958138    1.26337                     -7.434297   -2.481978
+            /cut2 |  -3.717744   1.263332                     -6.193829   -1.241658
+            /cut3 |  -2.839948   1.263322                     -5.316012   -.3638832
+            /cut4 |  -2.150751   1.263318                     -4.626808    .3253059
+            /cut5 |   -1.26288   1.263316                     -3.738933    1.213173
+            /cut6 |   1.139843   1.263315                     -1.336209    3.615895
+-----------------------------------------------------------------------------------
+Note: Estimates are transformed only in the first equation to odds ratios.
+
+. ologit sclfsato relrk1 inc dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbstat i.ma
+> rstat_dv i.wave,or
+
+Iteration 0:   log likelihood = -499130.35  
+Iteration 1:   log likelihood = -481284.31  
+Iteration 2:   log likelihood = -480620.46  
+Iteration 3:   log likelihood = -480619.76  
+Iteration 4:   log likelihood = -480619.76  
+
+Ordered logistic regression                           Number of obs =  312,152
+                                                      LR chi2(42)   = 37021.18
+                                                      Prob > chi2   =   0.0000
+Log likelihood = -480619.76                           Pseudo R2     =   0.0371
+
+-----------------------------------------------------------------------------------
+         sclfsato | Odds ratio   Std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+           relrk1 |   1.169561    .025574     7.16   0.000     1.120496    1.220775
+              inc |   1.004558   .0004945     9.24   0.000     1.003589    1.005527
+            dvage |   .9571318   .0012912   -32.48   0.000     .9546043    .9596659
+              age |   1.024694   .0007067    35.37   0.000      1.02331     1.02608
+                  |
+              sex |
+               2  |   1.126316   .0089312    15.00   0.000     1.108947    1.143958
+                  |
+          region4 |
+           Wales  |   1.020514   .0160411     1.29   0.196     .9895535    1.052443
+        Scotland  |   1.112837   .0144172     8.25   0.000     1.084936    1.141456
+Northern Ireland  |   1.223702   .0205938    12.00   0.000     1.183997    1.264738
+                  |
+             edu2 |
+            high  |   .9751014   .0199135    -1.23   0.217     .9368425    1.014923
+           hhsize |   .9506489   .0028376   -16.96   0.000     .9451035    .9562269
+          nchresp |   1.000202   .0055794     0.04   0.971     .9893259    1.011197
+         2.health |   1.957023   .0147506    89.08   0.000     1.928325    1.986148
+                  |
+           jbstat |
+               2  |   .9186911   .0118721    -6.56   0.000     .8957143    .9422573
+               3  |   .4905958   .0101267   -34.50   0.000     .4711439    .5108507
+               4  |   1.492627   .0251118    23.81   0.000     1.444211    1.542666
+               5  |   1.511787   .0661937     9.44   0.000      1.38746    1.647254
+               6  |    .823028   .0167263    -9.58   0.000     .7908895    .8564726
+               7  |   1.302581   .0342272    10.06   0.000     1.237195    1.371423
+               8  |    .253821   .0055798   -62.37   0.000      .243117    .2649964
+               9  |   .7630073   .1054921    -1.96   0.050     .5818928    1.000494
+              10  |    .909324   .1244028    -0.69   0.487     .6954525    1.188967
+              11  |    1.43867    .158181     3.31   0.001      1.15977    1.784639
+              12  |   .7563342   .0739051    -2.86   0.004     .6245089    .9159859
+              13  |   .6142393   .1665129    -1.80   0.072     .3610663    1.044932
+              97  |   .7712469   .0386096    -5.19   0.000     .6991674    .8507573
+                  |
+       marstat_dv |
+               1  |   .7790399   .9823254    -0.20   0.843     .0658025      9.2231
+               2  |   .6308099   .7954214    -0.37   0.715     .0532812    7.468328
+               3  |   .4641013   .5852454    -0.61   0.543     .0391943    5.495446
+               4  |   .4165513   .5252746    -0.69   0.487       .03518    4.932199
+               5  |   .3523504    .444371    -0.83   0.408      .029749    4.173283
+               6  |   .4586637   .5783309    -0.62   0.536     .0387446    5.429724
+                  |
+             wave |
+               2  |    .943651   .0135144    -4.05   0.000     .9175315     .970514
+               3  |   .8481951   .0123478   -11.31   0.000     .8243359     .872745
+               4  |   .7556097   .0111347   -19.02   0.000     .7340983    .7777515
+               5  |   .7390306   .0110652   -20.20   0.000     .7176583    .7610394
+               6  |   .9165547   .0139381    -5.73   0.000     .8896397    .9442839
+               7  |   .9453061   .0141974    -3.75   0.000     .9178852    .9735461
+               8  |   .8967489   .0136961    -7.14   0.000     .8703029    .9239986
+               9  |   .8133473   .0127258   -13.20   0.000     .7887838    .8386757
+              10  |   .7515627   .0118505   -18.11   0.000     .7286914    .7751518
+              11  |   .7480483   .0120152   -18.07   0.000     .7248658    .7719723
+              12  |   .8283599   .0137817   -11.32   0.000     .8017839    .8558168
+------------------+----------------------------------------------------------------
+            /cut1 |  -4.885853   1.261358                     -7.358069   -2.413637
+            /cut2 |  -3.645505    1.26132                     -6.117647   -1.173363
+            /cut3 |  -2.767825    1.26131                     -5.239946   -.2957029
+            /cut4 |   -2.07865   1.261306                     -4.550764    .3934639
+            /cut5 |  -1.190742   1.261304                     -3.662853    1.281368
+            /cut6 |   1.211422   1.261304                     -1.260689    3.683532
+-----------------------------------------------------------------------------------
+Note: Estimates are transformed only in the first equation to odds ratios.
+
+xtreg sclfsato relrk1 inc dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbstat i.mar
+> stat_dv i.wave
+
+Random-effects GLS regression                   Number of obs     =    312,152
+Group variable: pidp                            Number of groups  =     58,237
+
+R-squared:                                      Obs per group:
+     Within  = 0.0118                                         min =          1
+     Between = 0.1508                                         avg =        5.4
+     Overall = 0.1101                                         max =         12
+
+                                                Wald chi2(42)     =   13112.00
+corr(u_i, X) = 0 (assumed)                      Prob > chi2       =     0.0000
+
+-----------------------------------------------------------------------------------
+         sclfsato | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+           relrk1 |   .0960624   .0188756     5.09   0.000     .0590668     .133058
+              inc |   .0021081   .0004397     4.79   0.000     .0012463    .0029698
+            dvage |  -.0313125   .0013728   -22.81   0.000    -.0340031    -.028622
+              age |   .0168931   .0006845    24.68   0.000     .0155516    .0182346
+                  |
+              sex |
+               2  |   .0386756    .009624     4.02   0.000     .0198128    .0575383
+                  |
+          region4 |
+           Wales  |   .0147219   .0196677     0.75   0.454     -.023826    .0532698
+        Scotland  |    .052214   .0168445     3.10   0.002     .0191995    .0852285
+Northern Ireland  |   .1818393    .022184     8.20   0.000     .1383593    .2253192
+                  |
+             edu2 |
+            high  |     .01571   .0261702     0.60   0.548    -.0355827    .0670027
+           hhsize |  -.0207939   .0028793    -7.22   0.000    -.0264371   -.0151506
+          nchresp |   .0057724   .0054444     1.06   0.289    -.0048985    .0164434
+         2.health |   .2728006   .0059937    45.51   0.000     .2610532     .284548
+                  |
+           jbstat |
+               2  |  -.0292634   .0116767    -2.51   0.012    -.0521493   -.0063775
+               3  |  -.4724988   .0166733   -28.34   0.000    -.5051778   -.4398198
+               4  |   .1381389   .0149115     9.26   0.000     .1089128     .167365
+               5  |   .2044579   .0294741     6.94   0.000     .1466896    .2622262
+               6  |  -.1395395   .0171076    -8.16   0.000    -.1730698   -.1060092
+               7  |   .1310896   .0204642     6.41   0.000     .0909804    .1711987
+               8  |   -.957751    .019671   -48.69   0.000    -.9963054   -.9191966
+               9  |  -.2129651   .0916049    -2.32   0.020    -.3925074   -.0334227
+              10  |   -.021076   .0937416    -0.22   0.822    -.2048062    .1626542
+              11  |   .1423956   .0764858     1.86   0.063    -.0075137     .292305
+              12  |   -.111731   .0663469    -1.68   0.092    -.2417684    .0183065
+              13  |  -.3555039   .1765405    -2.01   0.044    -.7015169   -.0094908
+              97  |  -.1797333   .0349015    -5.15   0.000     -.248139   -.1113277
+                  |
+       marstat_dv |
+               1  |  -.1323025    .746467    -0.18   0.859    -1.595351    1.330746
+               2  |  -.2110137   .7464516    -0.28   0.777    -1.674032    1.252004
+               3  |  -.4318952   .7466217    -0.58   0.563    -1.895247    1.031456
+               4  |  -.4936768   .7465761    -0.66   0.508    -1.956939    .9695855
+               5  |  -.6177918   .7467218    -0.83   0.408     -2.08134     .845756
+               6  |  -.4463301   .7463878    -0.60   0.550    -1.909223    1.016563
+                  |
+             wave |
+               2  |  -.0543967   .0090209    -6.03   0.000    -.0720773   -.0367161
+               3  |  -.1431321   .0092797   -15.42   0.000      -.16132   -.1249443
+               4  |  -.2262119   .0094419   -23.96   0.000    -.2447176   -.2077062
+               5  |  -.2412206   .0096586   -24.97   0.000    -.2601512     -.22229
+               6  |  -.0752224   .0098518    -7.64   0.000    -.0945316   -.0559132
+               7  |   -.054044   .0097694    -5.53   0.000    -.0731918   -.0348962
+               8  |  -.1076919   .0099743   -10.80   0.000    -.1272412   -.0881425
+               9  |  -.1724117   .0102922   -16.75   0.000    -.1925839   -.1522394
+              10  |   -.202013    .010504   -19.23   0.000    -.2226005   -.1814256
+              11  |  -.1918626   .0107882   -17.78   0.000    -.2130071    -.170718
+              12  |  -.1248822   .0111705   -11.18   0.000     -.146776   -.1029883
+                  |
+            _cons |   5.938335   .7470107     7.95   0.000     4.474221    7.402449
+------------------+----------------------------------------------------------------
+          sigma_u |  .85138271
+          sigma_e |  1.1232884
+              rho |   .3648655   (fraction of variance due to u_i)
+-----------------------------------------------------------------------------------
+
+. 

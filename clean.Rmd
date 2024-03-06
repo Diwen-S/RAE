@@ -229,7 +229,7 @@ for (i in 1:1){
 summary statistics
 ```{r}
 data2 <- read_dta("rrankm2.dta")
-data2 <- subset(data2,select = !(names(data2) %in% c("pidp","hidp","scend","edu3","gor_dv","refg","inc","agegrp","groupm1")))
+data2 <- subset(data2,select = !(names(data2) %in% c("hidp","scend","edu3","gor_dv","refg","inc","agegrp","groupm1")))
 data2$dvage <- ifelse(data2$dvage <0,NA,data2$dvage)
 data2$jbstat <- ifelse(data2$jbstat<0,NA,data2$jbstat)
 data2$marstat_dv <- ifelse(data2$marstat_dv<0,NA,data2$marstat_dv)
@@ -243,9 +243,8 @@ round(data2$absrk1, digits = 0)
 data2$relrk <- (data2$absrk/data2$grpsize-1)
 data2$grpsize1<-ifelse(data2$grpsize>1,data2$grpsize,NA)
 data2$relrk1 <- (data2$absrk1-1)/(data2$grpsize1-1)
-save(data2,file = "use_reg2.RData")
-load("use_reg2.RData")
-write_dta(data2,"use_reg2.dta")
+
+write_dta(data2,"use_reg4.dta")
 stargazer(as.data.frame(data2),type = "latex", title='Summary Statistics',out = "summarys1.txt")
 plot(data2$relrk,data2$fimngrs_dv)
 ```
@@ -275,6 +274,30 @@ mea <- ocME(w = poolop001); mea
 ```{stata}
 oprobit sclfsato relrk fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbstat i.marstat_dv
 oprobit sclfsato fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.health i.jbstat i.marstat_dv
+```
+
+average increase in relrk1 for 100GBP increase
+
+```{r}
+data11 <- read_dta("use_reg4.dta")
+for (i in 1:length(data11$dvage)){
+  data11$fimngrs_dv[i] <- data11$fimngrs_dv[i]+100
+  data11$agegrp11 <- ifelse((data11$dvage < data11$dvage[i]+6.5 & data11$dvage > data11$dvage[i]-3.5),1,0) 
+  data11$refg11 <- data11$agegrp11*as.numeric(data11$group_m1)
+  data11$refg11 <- ifelse(data11$refg11 == data11$refg11[i],1,NA)
+  data11$inc11 <- data11$refg11*data11$fimngrs_dv
+  data11$absrk11[i] <- sum(!is.na(data11$inc11))-rank(data11$inc11)[i]
+  data11$refinc11[i]<-mean(data11$inc11,na.rm=T)
+  data11$grpsize11[i] <- sum(!is.na(data11$inc11))
+  data11$fimngrs_dv[i] <- data11$fimngrs_dv[i]-100
+}
+data11$absrk12 <- data11$grpsize11-data11$absrk11
+round(data11$absrk12, digits = 0)
+data11$grpsize12<-ifelse(data11$grpsize11>1,data11$grpsize11,NA)
+data11$relrk12 <- (data11$absrk12-1)/(data11$grpsize12-1)
+data11$diff <- data11$relrk12-data11$relrk1
+write_dta(data11,"100GBP.dta")
+summary(data11$diff)
 ```
 
 

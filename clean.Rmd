@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Data Cleaning
+
+## Merging datasets
 import library
 ```{r}
 library(haven)
@@ -22,7 +24,7 @@ library(MASS)
 library(mfx)
 library(sandwich)
 library(lmtest)
-library(zoo)
+library(plm)
 library(erer)
 ```
 
@@ -113,13 +115,13 @@ for(i in seq_along(df_names)) {
 ```
 
 ```{r}
-# Create a vector of data frame names
+
 df_names <- paste0("wave", 1:12)
 
-# Create a vector of prefixes
+
 prefixes <- letters[1:12]
 
-# Loop over the data frames and prefixes
+
 for(i in seq_along(df_names)) {
   # Check if the data frame exists and is not NULL
   if(exists(df_names[i]) && !is.null(get(df_names[i]))) {
@@ -139,9 +141,16 @@ data1 <- rbindlist(mget(paste0("wave",1:12)))
 write_dta(data1,"waveall.dta")
 summary(data1$wave)
 ```
-generate reference group
+## balance the data
 ```{r}
-data1 <- read_dta("wave1.dta")
+unbalanced<- read_dta("wave1.dta")
+unbalanced <- as.data.frame(unbalanced)
+unbalanced<-make.pbalanced(unbalanced, balance.type = "shared.individuals")
+```
+
+## generate reference group
+```{r}
+data1 <- read_dta("waveall.dta")
 attach(data1)
 summary(dvage)
 dvage <- ifelse(dvage <0,NA,dvage)
@@ -210,26 +219,17 @@ round(data2$absrk1, digits = 0)
 data2$relrk <- (data2$absrk/data2$grpsize-1)
 data2$grpsize1<-ifelse(data2$grpsize>1,data2$grpsize,NA)
 data2$relrk1 <- (data2$absrk1-1)/(data2$grpsize1-1)
-write_dta(data2,"rrankm2.dta")
-save(data2, file = "rrankm2.RData")
+write_dta(data2,"rrankm2b.dta")
+save(data2, file = "rrankm2b.RData")
 data1<-data2
 ```
-```{r}
-for (i in 1:1){
-  data1$agegrp <- ifelse((data1$dvage < data1$dvage[i]+6.5 & data1$dvage > data1$dvage[i]-3.5),1,0) 
-  data1$refg <- data1$agegrp*as.numeric(data1$group_m1)
-  data1$refg <- ifelse(data1$refg == data1$refg[i],1,NA)
-  data1$inc <- data1$refg*data1$fimngrs_dv
-  data1$absrk[i] <- sum(!is.na(data1$inc))-rank(data1$inc)[i]
-  data1$refinc[i]<-mean(data1$inc,na.rm=T)
-  data1$grpsize[i] <- sum(!is.na(data1$inc))
-}
-```
+
 
 summary statistics
 ```{r}
-data2 <- read_dta("rrankm2.dta")
-data2 <- subset(data2,select = !(names(data2) %in% c("hidp","scend","edu3","gor_dv","refg","inc","agegrp","groupm1")))
+
+data2 <- read_dta("rrankm2b.dta")
+data2 <- subset(data2,select = !(names(data2) %in% c("scend","gor_dv","refg","inc","agegrp","groupm1")))
 data2$dvage <- ifelse(data2$dvage <0,NA,data2$dvage)
 data2$jbstat <- ifelse(data2$jbstat<0,NA,data2$jbstat)
 data2$marstat_dv <- ifelse(data2$marstat_dv<0,NA,data2$marstat_dv)
@@ -243,8 +243,8 @@ round(data2$absrk1, digits = 0)
 data2$relrk <- (data2$absrk/data2$grpsize-1)
 data2$grpsize1<-ifelse(data2$grpsize>1,data2$grpsize,NA)
 data2$relrk1 <- (data2$absrk1-1)/(data2$grpsize1-1)
-
-write_dta(data2,"use_reg4.dta")
+data2$inc <- data2$fimngrs_dv/100
+write_dta(data2,"use_reg4b.dta")
 stargazer(as.data.frame(data2),type = "latex", title='Summary Statistics',out = "summarys1.txt")
 plot(data2$relrk,data2$fimngrs_dv)
 ```
@@ -279,7 +279,7 @@ oprobit sclfsato fimngrs_dv dvage age i.sex i.region4 i.edu2 hhsize nchresp i.he
 average increase in relrk1 for 100GBP increase
 
 ```{r}
-data11 <- read_dta("use_reg4.dta")
+data11 <- read_dta("use_reg4b.dta")
 for (i in 1:length(data11$dvage)){
   data11$fimngrs_dv[i] <- data11$fimngrs_dv[i]+100
   data11$agegrp11 <- ifelse((data11$dvage < data11$dvage[i]+6.5 & data11$dvage > data11$dvage[i]-3.5),1,0) 
@@ -296,8 +296,25 @@ round(data11$absrk12, digits = 0)
 data11$grpsize12<-ifelse(data11$grpsize11>1,data11$grpsize11,NA)
 data11$relrk12 <- (data11$absrk12-1)/(data11$grpsize12-1)
 data11$diff <- data11$relrk12-data11$relrk1
-write_dta(data11,"100GBP.dta")
+write_dta(data11,"100GBPb.dta")
 summary(data11$diff)
 ```
+
+
+## Prediction
+### generating subjective rank
+```{r}
+data11 <- read_dta("use_reg4b.dta")
+eta <- c(seq(0.95,2,0.05))
+sbrknames <- paste0("sbrk",eta*100)
+sbrkN <- c()
+for (i in 1:length(sbrknames)){
+  sbrkN <- 0.5+ ((data11$absrk1-1)-eta[i]*(data11$grpsize1-data11$absrk1))/(2*((data11$absrk1-1)+eta[i]*(data11$grpsize1-data11$absrk1)))
+  assign(sbrknames[i],sbrkN)
+data11[sbrknames[i]] <- sbrkNs
+}
+write_dta(data11,"use_predict1b.dta")
+```
+
 
 
